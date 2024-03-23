@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using TreasureTracker.Data.IRepositories;
 using TreasureTracker.Domain.Entities;
-using TreasureTracker.Domain.IRepositories;
 using TreasureTracker.Service.Configurations;
 using TreasureTracker.Service.DTOs.Helpers.Exceptions;
 using TreasureTracker.Service.DTOs.UserCodes;
@@ -12,12 +12,12 @@ namespace TreasureTracker.Service.Services.UserCodes;
 public class UserCodeService:IUserCodeService
 {
     private readonly IMapper _mapper;
-    private readonly IRepository<UserCode> _repository;
-    private readonly IRepository<User> _userRepository;
+    private readonly IUserCodeRepository _repository;
+    private readonly IUserRepository _userRepository;
 
-    public UserCodeService(IRepository<UserCode> repository,
+    public UserCodeService(IUserCodeRepository repository,
         IMapper mapper,
-        IRepository<User> userRepository)
+        IUserRepository userRepository)
     {
         _repository = repository;
         _mapper = mapper;

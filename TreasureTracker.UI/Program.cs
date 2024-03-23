@@ -2,10 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using TreasureTracker.Data.Db;
 using TreasureTracker.Service.Helpers.Media;
 using TreasureTracker.Service.Mappers;
+using TreasureTracker.UI.Extentions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddServices();
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));

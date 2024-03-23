@@ -11,4 +11,7 @@ public class User:Auditable
     public bool IsVerified { get; set; } = false;
     public bool IsActive { get; set; }
     public Role Role { get; set; }
+
+    public string RefreshToken { get; set; }
+    public DateTime ExpireDate { get; set; }
 }

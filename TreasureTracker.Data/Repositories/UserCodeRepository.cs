@@ -1,12 +1,12 @@
 ﻿using TreasureTracker.Data.Db;
-using TreasureTracker.Domain.Entities;
 using TreasureTracker.Data.IRepositories;
+using TreasureTracker.Domain.Entities;
 using TreasureTracker.Domain.Repositories;
 
 namespace TreasureTracker.Data.Repositories;
-public class UserRepository : Repository<User>, IUserRepository
+public class UserCodeRepository:Repository<UserCode>, IUserCodeRepository
 {
-    public UserRepository(DataContext context) : base(context)
+    public UserCodeRepository(DataContext context) : base(context)
     {
     }
 }
