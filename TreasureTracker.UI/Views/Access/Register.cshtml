@@ -1,0 +1,59 @@
+﻿@model UserPostModel;
+@{
+    Layout = null;
+    ViewData["Title"] = "Register page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true">
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="form-wrapper sign-up">
+            <form asp-controller="access" asp-action="Register" method="post" enctype="multipart/form-data">
+                <h2>Register</h2>
+                <div class="input-group">
+                    <input asp-for="FirstName" type="text" required>
+                    <label asp-for="FirstName">FirstName</label>
+                </div>
+                <div class="input-group">
+                    <input asp-for="LastName" type="text" required>
+                    <label asp-for="LastName">LastName</label>
+                </div>
+                <div class="input-group">
+                    <input value="@ViewBag.Email" readonly>
+                    <label>Email</label>
+                </div>
+                <div class="input-group">
+                    <input asp-for="Password" type="password" required>
+                    <label asp-for="Password">Password</label>
+                </div>
+                <div class="remember">
+                    <label><input type="checkbox"> I agree to the terms and conditions</label>
+                </div>
+                <button type="submit">Register</button>
+                <div class="signUp-link">
+                    <p>Already have an account? <a href="/Access/Login" class="signInBtn-link">LogIn now</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+            });
+        });
+    </script>
+}

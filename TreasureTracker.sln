@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureTracker.UI", "TreasureTracker.UI\TreasureTracker.UI.csproj", "{D425AB63-7477-47B9-9428-86ACA6D1252F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreasureTracker.UI", "TreasureTracker.UI\TreasureTracker.UI.csproj", "{D425AB63-7477-47B9-9428-86ACA6D1252F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureTracker.Data", "TreasureTracker.Data\TreasureTracker.Data.csproj", "{0BBA91A1-7220-4017-962E-5572916C5B72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreasureTracker.Data", "TreasureTracker.Data\TreasureTracker.Data.csproj", "{0BBA91A1-7220-4017-962E-5572916C5B72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureTracker.Domain", "TreasureTracker.Domain\TreasureTracker.Domain.csproj", "{BE83C672-9DC6-49BB-88B8-5A5AA4BCAD44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreasureTracker.Domain", "TreasureTracker.Domain\TreasureTracker.Domain.csproj", "{BE83C672-9DC6-49BB-88B8-5A5AA4BCAD44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureTracker.Service", "TreasureTracker.Service\TreasureTracker.Service.csproj", "{43570842-3FC9-4F1C-BCEB-7E8F9295E542}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreasureTracker.Service", "TreasureTracker.Service\TreasureTracker.Service.csproj", "{43570842-3FC9-4F1C-BCEB-7E8F9295E542}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
