@@ -11,11 +11,15 @@ namespace TreasureTracker.UI.Controllers
     {
         private readonly IUserService _userService;
         private readonly IUserAuthentication _authService;
+        private readonly IExistEmail _checkerService;
 
-        public AccessController(IUserService userService, IUserAuthentication authService)
+        public AccessController(IUserService userService, 
+                                IUserAuthentication authService, 
+                                IExistEmail checkerService)
         {
             _userService = userService;
             _authService = authService;
+            _checkerService = checkerService;
         }
 
         [HttpGet]
@@ -54,12 +58,12 @@ namespace TreasureTracker.UI.Controllers
             {
                 TempData["Email"] = email;
 
-                var result = await _authService.CheckEmail(email);
+                var result = await _checkerService.EmailExist(email);
 
-                if (result is EmailExistance.NotFound)
+                if (result is ExistEmailEnum.EmailNotFound)
                     return Redirect("~/Access/Register");
 
-                else if (result is EmailExistance.NotVerified)
+                else if (result is ExistEmailEnum.EmailNotChecked)
                     return Redirect("~/Access/Verification");
 
                 return Redirect("~/Access/Login");

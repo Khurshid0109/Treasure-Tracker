@@ -4,7 +4,7 @@ using TreasureTracker.Service.DTOs.Helpers;
 namespace TreasureTracker.Service.Interfaces.Auth;
 public interface IExistEmail
 {
-    Task<ExistEmailEnum> EmailExistance(string email);
+    Task<ExistEmailEnum> EmailExist(string email);
 
     Task SendMessage(Message message);
 

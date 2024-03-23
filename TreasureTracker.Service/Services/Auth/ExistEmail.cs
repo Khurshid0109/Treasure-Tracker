@@ -29,7 +29,7 @@ public class ExistEmail:IExistEmail
         _codeRepository = codeRepository;
     }
 
-    public async Task<ExistEmailEnum> EmailExistance(string email)
+    public async Task<ExistEmailEnum> EmailExist(string email)
     {
         var user = await _repository
             .GetAllAsync()
