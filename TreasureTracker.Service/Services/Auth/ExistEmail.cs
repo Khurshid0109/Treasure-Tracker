@@ -8,6 +8,7 @@ using TreasureTracker.Domain.IRepositories;
 using TreasureTracker.Service.DTOs.Helpers;
 using TreasureTracker.Service.Interfaces.Auth;
 using TreasureTracker.Service.DTOs.Helpers.Exceptions;
+using TreasureTracker.Service.Interfaces.UserCodes;
 
 namespace TreasureTracker.Service.Services.Auth;
 public class ExistEmail:IExistEmail
@@ -17,7 +18,7 @@ public class ExistEmail:IExistEmail
     private readonly IRepository<UserCode> _codeRepository;
     private readonly IConfiguration _configuration;
 
-    public EmailExist(IRepository<User> repository,
+    public ExistEmail(IRepository<User> repository,
                      IConfiguration configuration,
                      IUserCodeService userCodeService,
                      IRepository<UserCode> codeRepository)
