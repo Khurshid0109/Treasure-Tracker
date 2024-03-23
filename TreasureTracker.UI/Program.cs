@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TreasureTracker.Data.Db;
+using TreasureTracker.Service.Helpers.Media;
 using TreasureTracker.Service.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
+WebHostEnvironmentHelper.WebRootPath = Path.GetFullPath("wwwroot");
 
 if (!app.Environment.IsDevelopment())
 {
