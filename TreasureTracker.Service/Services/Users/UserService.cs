@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
-using TreasureTracker.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using TreasureTracker.Domain.Entities;
-using TreasureTracker.Service.DTOs.Users;
+using TreasureTracker.Domain.Enums;
 using TreasureTracker.Domain.IRepositories;
+using TreasureTracker.Service.Configurations;
+using TreasureTracker.Service.DTOs.Helpers.Exceptions;
+using TreasureTracker.Service.DTOs.Users;
+using TreasureTracker.Service.Extentions;
+using TreasureTracker.Service.Helpers.Hasher;
 using TreasureTracker.Service.Interfaces.Auth;
 using TreasureTracker.Service.Interfaces.Users;
-using TreasureTracker.Service.DTOs.Helpers.Exceptions;
 
 namespace TreasureTracker.Service.Services.Users;
 public class UserService:IUserService
@@ -63,13 +66,13 @@ public class UserService:IUserService
         return true;
     }
 
-    public async Task<PaginationViewModel<UserViewModel>> GetAllAsync(PaginationParams @params)
+    public async Task<IEnumerable<UserViewModel>> GetAllAsync(PaginationParams @params)
     {
         var users = await _repository.GetAllAsync()
-              .ProjectTo<UserViewModel>(_mapper.ConfigurationProvider)
-              .ToPaginationAsync(@params);
+              .ToPagedList<User>(@params)
+              .ToListAsync();
 
-        return users;
+        return _mapper.Map<IEnumerable<UserViewModel>>(users) ;
     }
 
     public async Task<UserViewModel> GetByEmailAsync(string email)
