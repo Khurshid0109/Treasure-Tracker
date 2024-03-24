@@ -9,6 +9,7 @@ using TreasureTracker.Service.DTOs.Helpers;
 using TreasureTracker.Service.Interfaces.Auth;
 using TreasureTracker.Service.DTOs.Helpers.Exceptions;
 using TreasureTracker.Service.Interfaces.UserCodes;
+using TreasureTracker.Service.DTOs.Auth;
 
 namespace TreasureTracker.Service.Services.Auth;
 public class ExistEmail:IExistEmail
@@ -50,20 +51,20 @@ public class ExistEmail:IExistEmail
         return ExistEmailEnum.EmailNotChecked;
     }
 
-    public async Task<bool> VerifyCodeAsync(string email, long code)
+    public async Task<bool> VerifyCodeAsync(VerificationPostModel model)
     {
         var userCodeAny = await _codeRepository
             .GetAllAsync()
             .IgnoreQueryFilters()
             .Include(u => u.User)
-            .AnyAsync(c => c.User.Email == email && c.ExpireDate > DateTime.UtcNow && c.Code == code);
+            .AnyAsync(c => c.User.Email.ToLower() == model.Email.ToLower() && c.ExpireDate > DateTime.UtcNow && c.Code == model.Code);
 
         if (userCodeAny)
         {
             var user = await _repository
                 .GetAllAsync()
                 .IgnoreQueryFilters()
-                .FirstOrDefaultAsync(u => u.Email == email);
+                .FirstOrDefaultAsync(u => u.Email.ToLower() == model.Email.ToLower());
 
             if (user is null)
                 return false;
@@ -109,7 +110,7 @@ public class ExistEmail:IExistEmail
 
         var userCode = new UserCode()
         {
-            Code = randomNumber,
+            Code = randomNumber.ToString(),
             UserId = user.Id,
             ExpireDate = DateTime.UtcNow.AddMinutes(3)
         };

@@ -3,21 +3,17 @@ using TreasureTracker.Domain.Enums;
 using TreasureTracker.Service.DTOs.Auth;
 using TreasureTracker.Service.DTOs.Users;
 using TreasureTracker.Service.Interfaces.Auth;
-using TreasureTracker.Service.Interfaces.Users;
 
 namespace TreasureTracker.UI.Controllers
 {
     public class AccessController : Controller
     {
-        private readonly IUserService _userService;
         private readonly IUserAuthentication _authService;
         private readonly IExistEmail _checkerService;
 
-        public AccessController(IUserService userService, 
-                                IUserAuthentication authService, 
+        public AccessController(IUserAuthentication authService, 
                                 IExistEmail checkerService)
         {
-            _userService = userService;
             _authService = authService;
             _checkerService = checkerService;
         }
@@ -35,11 +31,14 @@ namespace TreasureTracker.UI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginPostModel model)
         {
             if (ModelState.IsValid)
             {
+                var result = await _authService.AuthenticateAsync(model);
 
+                if(result is not null)
+                    return Redirect("~/Home/Index");
             }
 
             return View();
@@ -89,7 +88,7 @@ namespace TreasureTracker.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userService.CreateAsync(model);
+                var user = await _authService.CreateAsync(model);
                 return Redirect("~/Access/Verification");
             }
             return View();
@@ -107,15 +106,18 @@ namespace TreasureTracker.UI.Controllers
             return View();
         }
 
-        //[HttpPost("Verification")]
-        //public async Task<IActionResult> Verification(User)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
+        [HttpPost("verification")]
+        public async Task<IActionResult> Verification(VerificationPostModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _checkerService.VerifyCodeAsync(model);
 
-        //    }
+                if(result)
+                    return Redirect("~/Home/Index");
+            }
 
-        //    return View();
-        //}
+            return View();
+        }
     }
 }

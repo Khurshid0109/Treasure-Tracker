@@ -2,6 +2,6 @@
 public class UserCodeViewModel
 {
     public long UserId { get; set; }
-    public long Code { get; set; }
+    public string Code { get; set; }
     public DateTime ExpireDate { get; set; }
 }
