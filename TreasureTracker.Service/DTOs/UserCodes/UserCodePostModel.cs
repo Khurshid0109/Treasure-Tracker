@@ -2,5 +2,5 @@
 public class UserCodePostModel
 {
     public long UserId { get; set; }
-    public long Code { get; set; }
+    public string Code { get; set; }
 }

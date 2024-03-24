@@ -17,6 +17,5 @@ namespace TreasureTracker.UI.Controllers
             return View();
         }
 
-        
     }
 }

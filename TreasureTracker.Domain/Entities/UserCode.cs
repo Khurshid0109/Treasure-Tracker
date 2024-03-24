@@ -10,7 +10,7 @@ public class UserCode:Auditable
     public User User { get; set; }
 
     [MaxLength(10)]
-    public long Code { get; set; }
+    public string Code { get; set; }
 
     public DateTime ExpireDate { get; set; }
 }

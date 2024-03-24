@@ -1,4 +1,5 @@
-﻿@{
+﻿@model VerificationPostModel
+@{
     Layout = null;
 }
 
@@ -13,15 +14,15 @@
 <body>
     <div class="wrapper">
         <div class="form-wrapper sign-in">
-            <form asp-controller="access" asp-action="Verification" method="post" enctype="multipart/form-data">
+            <form asp-controller="access" asp-action="verification" method="post" enctype="multipart/form-data">
                 <h2>Verification</h2>
                 <div class="input-group">
-                    <input value="@ViewBag.Email" readonly>
-                    <label>Email</label>
+                    <input asp-for="Email" value="@ViewBag.Email" readonly>
+                    <label asp-for="Email">Email</label>
                 </div>
                 <div class="input-group">
-                    <input type="number" required>
-                    <label>Verification Code</label>
+                    <input asp-for="Code" type="number" required>
+                    <label asp-for="Code">Verification Code</label>
                 </div>
 
                 <button type="submit">Submit</button>
