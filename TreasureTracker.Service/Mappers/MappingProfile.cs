@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using TreasureTracker.Domain.Entities;
+using TreasureTracker.Service.DTOs.Categories;
+using TreasureTracker.Service.DTOs.Comments;
 using TreasureTracker.Service.DTOs.Messages;
 using TreasureTracker.Service.DTOs.UserCodes;
 using TreasureTracker.Service.DTOs.Users;
@@ -22,5 +24,13 @@ public class MappingProfile:Profile
         // Message
         CreateMap<Message,MessagePostModel>().ReverseMap();
         CreateMap<Message,MessageViewModel>().ReverseMap();
+
+        // Category
+        CreateMap<Category,CategoryPostModel>().ReverseMap();
+        CreateMap<Category,CategoryViewModel>().ReverseMap();
+
+        // Comment
+        CreateMap<Comment,CommentPostModel>().ReverseMap();
+        CreateMap<Comment,CommentViewModel>().ReverseMap();
     }
 }
