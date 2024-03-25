@@ -3,9 +3,13 @@ using TreasureTracker.Data.Repositories;
 using TreasureTracker.Domain.IRepositories;
 using TreasureTracker.Domain.Repositories;
 using TreasureTracker.Service.Interfaces.Auth;
+using TreasureTracker.Service.Interfaces.Categories;
+using TreasureTracker.Service.Interfaces.Comments;
 using TreasureTracker.Service.Interfaces.UserCodes;
 using TreasureTracker.Service.Interfaces.Users;
 using TreasureTracker.Service.Services.Auth;
+using TreasureTracker.Service.Services.Categories;
+using TreasureTracker.Service.Services.Comments;
 using TreasureTracker.Service.Services.UserCodes;
 using TreasureTracker.Service.Services.Users;
 
@@ -29,5 +33,13 @@ public static class ServiceExtention
         // UserCode
         services.AddScoped<IUserCodeService, UserCodeService>();
         services.AddScoped<IUserCodeRepository, UserCodeRepository>();
+
+        // Category
+        services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+        // Comment
+        services.AddScoped<ICommentService, CommentService>();
+        services.AddScoped<ICommentRepository, CommentRepository>();
     }
 }
