@@ -4,7 +4,7 @@ using TreasureTracker.Domain.Entities;
 using TreasureTracker.Domain.Enums;
 using TreasureTracker.Domain.IRepositories;
 using TreasureTracker.Service.Configurations;
-using TreasureTracker.Service.DTOs.Helpers.Exceptions;
+using TreasureTracker.Service.Helpers.Exceptions;
 using TreasureTracker.Service.DTOs.Users;
 using TreasureTracker.Service.Extentions;
 using TreasureTracker.Service.Helpers.Hasher;

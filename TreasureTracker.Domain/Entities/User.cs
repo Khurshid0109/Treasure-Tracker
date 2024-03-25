@@ -15,4 +15,6 @@ public class User:Auditable
     public DateTime ExpireDate { get; set; }
 
     public ICollection<UserCode> UserCodes { get; set; }
+    public ICollection<Collection> Collections { get; set; }
+    public ICollection<Comment> Comments { get; set; }
 }

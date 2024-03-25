@@ -1,6 +1,6 @@
 ﻿using TreasureTracker.Domain.Enums;
 using TreasureTracker.Service.DTOs.Auth;
-using TreasureTracker.Service.DTOs.Helpers;
+using TreasureTracker.Service.Helpers;
 
 namespace TreasureTracker.Service.Interfaces.Auth;
 public interface IExistEmail

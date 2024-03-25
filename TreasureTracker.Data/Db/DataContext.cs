@@ -13,4 +13,6 @@ public class DataContext:DbContext
     public DbSet<Collection> Collections { get; set; }
     public DbSet<Item> Items { get; set; }
     public DbSet<Comment> Comments { get; set; }
+    public DbSet<Tag>  Tags { get; set; }
+    public DbSet<ItemTag> ItemTags { get; set; }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TreasureTracker.Data.IRepositories;
 using TreasureTracker.Domain.Entities;
 using TreasureTracker.Service.Configurations;
-using TreasureTracker.Service.DTOs.Helpers.Exceptions;
+using TreasureTracker.Service.Helpers.Exceptions;
 using TreasureTracker.Service.DTOs.UserCodes;
 using TreasureTracker.Service.Extentions;
 using TreasureTracker.Service.Interfaces.UserCodes;

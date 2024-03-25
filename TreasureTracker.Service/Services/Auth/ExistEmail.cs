@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using TreasureTracker.Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using TreasureTracker.Domain.IRepositories;
-using TreasureTracker.Service.DTOs.Helpers;
 using TreasureTracker.Service.Interfaces.Auth;
-using TreasureTracker.Service.DTOs.Helpers.Exceptions;
+using TreasureTracker.Service.Helpers.Exceptions;
 using TreasureTracker.Service.Interfaces.UserCodes;
 using TreasureTracker.Service.DTOs.Auth;
+using TreasureTracker.Service.Helpers;
 
 namespace TreasureTracker.Service.Services.Auth;
 public class ExistEmail:IExistEmail
