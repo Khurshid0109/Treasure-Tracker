@@ -26,6 +26,31 @@
                 <a href="#">Home</a>
             </li>
         </ul>
+
+        <div class="dropdown">
+            <div class="wrapper">
+                <img src="./SiteImages/united-states-of-america.png" class="selectedImg" alt="image">
+                <div class="selected">English</div>
+            </div>
+            <i class="fa-solid fa-caret-down lan"></i>
+
+            <div class="list">
+                <div class="item">
+                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en">
+                        <img src="./SiteImages/united-states-of-america.png" alt="image">
+                        <span class="text">English</span>
+                    </a>
+                </div>
+
+                <div class="item">
+                    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="uz">
+                        <img src="./SiteImages/uzbekistan.png" alt="image">
+                        <span class="text">Uzbek</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="btn">
             <div class="btn__indicator">
                 <div class="btn__icon-container">

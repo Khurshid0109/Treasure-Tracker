@@ -29,6 +29,9 @@ body {
     font-family: sans-serif;
 }
 
+a{
+    text-decoration:none;
+}
 /* ---------- Navbar ----------*/
 .navbar {
     display: flex;
@@ -132,5 +135,80 @@ body.darkmode {
 }
 
 .darkmode .navbar-item a {
+    color: var(--dark-item-color);
+}
+
+/* -------------- Language changer -------------- */
+
+.dropdown {
+    display: flex;
+    position: relative;
+    width: 150px;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 75px;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    color: var(--dark-color);
+}
+
+    .wrapper img {
+        width: 20px;
+        height: 20px;
+    }
+
+.lan {
+    color: var(--dark-color);
+}
+
+.list {
+    background-color: var(--light-container-color);
+    position: absolute;
+    top: 45px;
+    left: 0px;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    cursor: pointer;
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    color: var(--dark-color);
+}
+
+    .item img {
+        width: 20px;
+        height: 20px;
+    }
+
+
+/*Dark mode*/
+.darkmode .wrapper {
+    color: var(--dark-item-color);
+}
+
+.darkmode .list {
+    background-color: var(--dark-container-color);
+}
+
+.darkmode .item {
+    color: var(--dark-item-color);
+}
+
+.darkmode .lan {
     color: var(--dark-item-color);
 }

@@ -1,10 +1,37 @@
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using TreasureTracker.Data.Db;
 using TreasureTracker.Service.Helpers.Media;
 using TreasureTracker.Service.Mappers;
+using TreasureTracker.Service.Services.Languages;
 using TreasureTracker.UI.Extentions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+// Add services to the container.
+#region Localization
+//Step 1
+builder.Services.AddSingleton<LanguageService>();
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddMvc()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization(options =>
+    {
+        options.DataAnnotationLocalizerProvider = (type, factory) =>
+        {
+            var assemblyName = new AssemblyName(typeof(SharedResource).GetTypeInfo().Assembly.FullName);
+            return factory.Create("SharedResource", assemblyName.Name);
+        };
+    });
+
+var supportedCultures = new[] { "en", "uz" }; // Add more as needed
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+#endregion
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddServices();
@@ -25,6 +52,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+//Step 2
+app.UseRequestLocalization(localizationOptions);
 
 app.UseRouting();
 

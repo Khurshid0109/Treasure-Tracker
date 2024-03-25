@@ -51,3 +51,40 @@ btn.addEventListener('click', () => {
         icon.classList.remove('animated');
     }, 500)
 })
+
+
+// Language selecter
+const dropdown = document.querySelector(".dropdown");
+const list = document.querySelector(".list");
+const item = document.querySelectorAll(".item");
+const selected = document.querySelector(".selected");
+const selectedImg = document.querySelector(".selectedImg");
+
+dropdown.addEventListener('click', () => {
+    list.classList.toggle('show');
+});
+
+item.forEach(elem => {
+    elem.addEventListener('click', () => {
+        const image = elem.querySelector('img');
+        const text = elem.querySelector('.text');
+
+        selectedImg.src = image.src;
+        selected.innerHTML = text.innerHTML;
+
+        // Save selected image and text to localStorage
+        localStorage.setItem('selectedImage', image.src);
+        localStorage.setItem('selectedText', text.innerHTML);
+    });
+})
+
+// Retrieve selected image and text from localStorage on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const selectedImage = localStorage.getItem('selectedImage');
+    const selectedText = localStorage.getItem('selectedText');
+
+    if (selectedImage && selectedText) {
+        selectedImg.src = selectedImage;
+        selected.innerHTML = selectedText;
+    }
+});
