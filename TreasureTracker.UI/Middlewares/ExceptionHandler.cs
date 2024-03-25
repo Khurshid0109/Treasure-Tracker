@@ -1,4 +1,4 @@
-﻿using TreasureTracker.Service.DTOs.Helpers.Exceptions;
+﻿using TreasureTracker.Service.Helpers.Exceptions;
 using TreasureTracker.UI.Helpers;
 
 namespace TreasureTracker.UI.Middlewares;

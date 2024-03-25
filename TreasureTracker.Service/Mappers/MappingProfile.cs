@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using TreasureTracker.Domain.Entities;
-using TreasureTracker.Service.DTOs.Helpers;
 using TreasureTracker.Service.DTOs.Messages;
 using TreasureTracker.Service.DTOs.UserCodes;
 using TreasureTracker.Service.DTOs.Users;
+using TreasureTracker.Service.Helpers;
 
 namespace TreasureTracker.Service.Mappers;
 public class MappingProfile:Profile

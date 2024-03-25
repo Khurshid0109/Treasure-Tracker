@@ -2,7 +2,7 @@
 using TreasureTracker.Domain.Commons;
 using TreasureTracker.Domain.Entities;
 using TreasureTracker.Service.Configurations;
-using TreasureTracker.Service.DTOs.Helpers.Exceptions;
+using TreasureTracker.Service.Helpers.Exceptions;
 
 namespace TreasureTracker.Service.Extentions;
 public static class CollectionExtention

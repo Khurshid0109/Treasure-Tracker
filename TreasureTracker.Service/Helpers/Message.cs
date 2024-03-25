@@ -1,4 +1,4 @@
-﻿namespace TreasureTracker.Service.DTOs.Helpers;
+﻿namespace TreasureTracker.Service.Helpers;
 public class Message
 {
     public string Subject { get; set; }
