@@ -13,4 +13,6 @@ public class User:Auditable
 
     public string RefreshToken { get; set; }
     public DateTime ExpireDate { get; set; }
+
+    public ICollection<UserCode> UserCodes { get; set; }
 }
