@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TreasureTracker.Data.Helpers;
 using TreasureTracker.Domain.Entities;
 
 namespace TreasureTracker.Data.Db;
@@ -15,4 +16,15 @@ public class DataContext:DbContext
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Tag>  Tags { get; set; }
     public DbSet<ItemTag> ItemTags { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        QueryFilterHelper.AddQueryFilters(modelBuilder);
+        modelBuilder.Entity<User>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
+
+        modelBuilder.Entity<User>()
+            .HasQueryFilter(user => user.IsVerified);
+    }
 }

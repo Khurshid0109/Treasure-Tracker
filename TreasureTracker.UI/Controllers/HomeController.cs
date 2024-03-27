@@ -7,6 +7,7 @@ using TreasureTracker.Service.Services.Languages;
 
 namespace TreasureTracker.UI.Controllers
 {
+   
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -21,7 +22,7 @@ namespace TreasureTracker.UI.Controllers
             _localization = localization;
             _userService = userService;
         }
-
+        [HttpGet]
         public  async Task<IActionResult> Index()
         {
             var id = GetUserId();
