@@ -29,8 +29,8 @@ body {
     font-family: sans-serif;
 }
 
-a{
-    text-decoration:none;
+a {
+    text-decoration: none;
 }
 /* ---------- Navbar ----------*/
 .navbar {
@@ -72,7 +72,7 @@ a{
     align-items: center;
     cursor: pointer;
     position: fixed;
-    right: 25px;
+    right: 60px;
 }
 
 .btn__indicator {
@@ -145,8 +145,8 @@ body.darkmode {
     position: relative;
     width: 150px;
     align-items: center;
-    justify-content: space-between;
-    margin-right: 75px;
+    /* justify-content: space-between;*/
+    margin-right: 30px;
 }
 
 .wrapper {
@@ -211,4 +211,90 @@ body.darkmode {
 
 .darkmode .lan {
     color: var(--dark-item-color);
+}
+
+/* user avatar  */
+.user-box {
+    position: relative;
+    margin: 0 10px;
+}
+
+.user-img {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    align-items: center;
+}
+
+    .user-img:hover {
+        border: 2px solid #8bdaf0;
+    }
+
+    .user-img img {
+        width: 100%;
+        height: 100%;
+    }
+
+.user-dropdown {
+    display: none;
+    background-color: var(--light-container-color);
+    border-radius: 8px;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    padding: 10px;
+    box-shadow: 3px 2px 4px 6px rgba(49, 47, 47, 0.3);
+}
+
+.user__dropdown__item {
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-decoration:none;
+    color:var(--light-item-color);
+}
+
+.user-dropdown.active {
+    display: block;
+}
+
+.user-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 2px solid #545454;
+    margin-top: 20px;
+}
+
+    .user-btn:hover {
+        background-color: #686868;
+    }
+
+/* Darkmode user avatar */
+.darkmode .user-dropdown {
+    background-color: var(--dark-container-color);
+}
+
+.darkmode .user__dropdown__item {
+    color: var(--dark-item-color);
+}
+
+.darkmode .user-btn {
+    background-color: var(--dark-container-color);
+    border: 2px solid var(--dark-item-color);
+    color: var(--dark-item-color);
+}
+
+.darkmode .user-btn:hover {
+    background-color: var(--dark-color);
 }
