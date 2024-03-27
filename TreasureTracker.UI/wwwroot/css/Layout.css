@@ -246,6 +246,8 @@ body.darkmode {
     top: 60px;
     right: 0;
     padding: 10px;
+    width:200px;
+    justify-content:center;
     box-shadow: 3px 2px 4px 6px rgba(49, 47, 47, 0.3);
 }
 
@@ -255,6 +257,11 @@ body.darkmode {
     text-decoration:none;
     color:var(--light-item-color);
 }
+
+    .user__dropdown__item .label {
+        font-weight: bold;
+        margin-right: 10px;
+    }
 
 .user-dropdown.active {
     display: block;

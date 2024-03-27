@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model UserViewModel
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -55,7 +56,6 @@
             </div>
         </div>
         <!--End of language dropdown-->
-
         <!--Darkmode-Lightmode-button-->
         <div class="btn">
             <div class="btn__indicator">
@@ -65,16 +65,25 @@
             </div>
         </div>
         <!--End of Darkmode-Lightmode-button-->
-
         <!-- User profile dropdown-->
         <div class="user-box">
             <div class="user-img" onclick="userAvatar()">
                 <img src="./SiteImages/profile-pic.jpg" alt="img">
             </div>
             <div class="user-dropdown" id="user-dropdown">
-                <a class="user__dropdown__item"> First Name: Gulchapcha</a>
-                <a class="user__dropdown__item"> Last Name: Gulchapcha</a>
-                <a class="user__dropdown__item"> Email: gulchapcha@gmail.com</a>
+                <div class="user__dropdown__item">
+                    <span class="label">First Name:</span>
+                    <span class="value"> @Model.FirstName </span> <!-- Display first name from model -->
+                </div>
+                <div class="user__dropdown__item">
+                    <span class="label">Last Name:</span>
+                    <span class="value"> @Model.LastName </span> <!-- Display first name from model -->
+                </div>
+                
+                <div class="user__dropdown__item">
+                    <span class="label">Role:</span>
+                    <span class="value">@Model.Role</span> <!-- Display first name from model -->
+                </div>
                 <a class="user__dropdown__item">Profile</a>
                 <hr>
                 <button class="user-btn">
