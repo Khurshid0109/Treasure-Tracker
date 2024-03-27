@@ -18,7 +18,7 @@ public class Repository<T> : IRepository<T> where T : Auditable
     public async Task<bool> DeleteAsync(long id)
     {
        var user = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
-       _dbSet.Remove(user);
+       user.IsDeleted = true;
         return true;
     }
 
