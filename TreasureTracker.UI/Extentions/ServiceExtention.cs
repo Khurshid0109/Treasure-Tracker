@@ -38,6 +38,9 @@ public static class ServiceExtention
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+        // Item
+        services.AddScoped<IItemRepository,ItemRepository>();
+
         // Comment
         services.AddScoped<ICommentService, CommentService>();
         services.AddScoped<ICommentRepository, CommentRepository>();

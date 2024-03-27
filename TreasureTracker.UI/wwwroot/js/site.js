@@ -88,3 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
         selected.innerHTML = selectedText;
     }
 });
+
+
+// user avatar start
+let userDrop = document.getElementById('user-dropdown')
+
+function userAvatar() {
+    userDrop.classList.toggle('active')
+}
+// user avatar end 
