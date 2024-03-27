@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="./css/Pages.css" asp-append-version="true">
+    <link rel="stylesheet" href="../css/Pages.css" asp-append-version="true">
 
     <!----===== Iconscout CSS ===== -->
-    @* <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"> *@
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <title>Admin Dashboard Panel</title>
 </head>
@@ -20,7 +20,7 @@
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="./SiteImages/logo.png" alt="">
+                <img src="../SiteImages/logo.png" alt="">
             </div>
 
             <span class="logo_name">Treasure Tracker</span>
@@ -29,15 +29,15 @@
         <div class="menu-items">
             <ul class="nav-links">
                 <li>
-                    <a href="#">
+                    <a asp-controller="Home" asp-action="Index">
                         <i class="uil uil-estate"></i>
-                        <span class="link-name">Dahsboard</span>
+                        <span class="link-name">Dashboard</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                         <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">Content</span>
+                        <span class="link-name">Users</span>
                     </a>
                 </li>
                 <li>
@@ -97,7 +97,7 @@
                 <input type="text" placeholder="Search here...">
             </div>
 
-            <img src="./SiteImages/profile-pic.jpg" alt="">
+            <img src="../SiteImages/profile-pic.jpg" alt="">
         </div>
 
         <div class="dash-content">
@@ -188,6 +188,6 @@
         </div>
     </section>
 
-    <script src="./js/Page.js"></script>
+    <script src="../js/Page.js"></script>
 </body>
 </html>

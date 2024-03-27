@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
-using System.Threading.Tasks;
 using TreasureTracker.Service.Interfaces.Users;
 using TreasureTracker.Service.Services.Languages;
 
 namespace TreasureTracker.UI.Controllers
 {
-   
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -22,6 +21,7 @@ namespace TreasureTracker.UI.Controllers
             _localization = localization;
             _userService = userService;
         }
+
         [HttpGet]
         public  async Task<IActionResult> Index()
         {
@@ -33,6 +33,16 @@ namespace TreasureTracker.UI.Controllers
             return View(user);
         }
 
+        public async Task<IActionResult> RedirectUser()
+        {
+            var id = GetUserId();
+            var user = await _userService.GetByIdAsync(id);
+
+            if (user.Role == Domain.Enums.Role.User)
+                return Redirect("~/Pages/UserPage");
+
+            return Redirect("~/Pages/AdminPage");
+        }
         #region Localization
         public IActionResult ChangeLanguage(string culture)
         {
