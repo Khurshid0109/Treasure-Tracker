@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
+using System.Threading.Tasks;
+using TreasureTracker.Service.Interfaces.Users;
 using TreasureTracker.Service.Services.Languages;
 
 namespace TreasureTracker.UI.Controllers
@@ -8,18 +11,25 @@ namespace TreasureTracker.UI.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private  LanguageService _localization;
+        private readonly IUserService _userService;
 
-        public HomeController(ILogger<HomeController> logger, LanguageService localization)
+        public HomeController(ILogger<HomeController> logger,
+                              LanguageService localization, 
+                              IUserService userService)
         {
             _logger = logger;
             _localization = localization;
+            _userService = userService;
         }
 
-        public IActionResult Index()
+        public  async Task<IActionResult> Index()
         {
+            var id = GetUserId();
+
+            var user = await _userService.GetByIdAsync(id);
             //get culture information
             var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
-            return View();
+            return View(user);
         }
 
         #region Localization
@@ -33,6 +43,26 @@ namespace TreasureTracker.UI.Controllers
             //return await Task.FromResult(RedirectToAction("Index"));
         }
         #endregion
+
+        private long GetUserId()
+        {
+            var token = HttpContext.Request.Cookies["token"];
+
+            if (string.IsNullOrEmpty(token))
+                return 0;
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            try
+            {
+                var jwtToken = tokenHandler.ReadJwtToken(token);
+                var userId = jwtToken.Claims.First(claim => claim.Type == "Id").Value;
+                return long.Parse(userId);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
 
     }
 }

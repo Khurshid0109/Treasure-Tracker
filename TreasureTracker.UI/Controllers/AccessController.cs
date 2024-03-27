@@ -35,10 +35,35 @@ namespace TreasureTracker.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _authService.AuthenticateAsync(model);
+                try
+                {
+                    var result = await _authService.AuthenticateAsync(model);
 
-                if(result is not null)
-                    return Redirect("~/Home/Index");
+                    // Check if the login was successful and an access token is available
+                    if (!string.IsNullOrEmpty(result.Token))
+                    {
+                        // Set a cookie with the access token
+                        var cookieOptions = new CookieOptions
+                        {
+                            HttpOnly = true,
+                            Secure = true,
+                            SameSite = SameSiteMode.Strict,
+                            Expires = result.AccessTokenExpireDate
+                        };
+
+                        Response.Cookies.Append("token", result.Token, cookieOptions);
+
+                        // Redirect to the desired page after successful login
+                        return Redirect("~/Home/Index");
+                    }
+
+                    // Handle the case when login was not successful
+                    ModelState.AddModelError("", "Login failed");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
             }
 
             return View();
@@ -88,8 +113,35 @@ namespace TreasureTracker.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _authService.CreateAsync(model);
-                return Redirect("~/Access/Verification");
+                try
+                {
+                    var result = await _authService.CreateAsync(model);
+
+                    // Check if the registration was successful and an access token is available
+                    if (!string.IsNullOrEmpty(result.Token))
+                    {
+                        // Set a cookie with the access token
+                        var cookieOptions = new CookieOptions
+                        {
+                            HttpOnly = true,
+                            Secure = true,
+                            SameSite = SameSiteMode.Strict,
+                            Expires = result.AccessTokenExpireDate
+                        };
+
+                        Response.Cookies.Append("token", result.Token, cookieOptions);
+
+                        // Redirect to the desired page after successful registration
+                        return Redirect("~/Home/Index");
+                    }
+
+                    // Handle the case when registration was not successful
+                    ModelState.AddModelError("", "Registration failed");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
             }
             return View();
         }

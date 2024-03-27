@@ -53,12 +53,22 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseCors(cors =>
+    cors.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+
 //Step 2
 app.UseRequestLocalization(localizationOptions);
 
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Access}/{action=ExistEmail}");
 
 app.MapControllerRoute(
     name: "default",
