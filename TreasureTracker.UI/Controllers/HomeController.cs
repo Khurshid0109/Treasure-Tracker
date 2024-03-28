@@ -39,9 +39,9 @@ namespace TreasureTracker.UI.Controllers
             var user = await _userService.GetByIdAsync(id);
 
             if (user.Role == Domain.Enums.Role.User)
-                return Redirect("~/Pages/UserPage");
+                return Redirect("~/UserPage/Dashboard");
 
-            return Redirect("~/Pages/AdminPage");
+            return Redirect("~/Pages/Dashboard");
         }
         #region Localization
         public IActionResult ChangeLanguage(string culture)

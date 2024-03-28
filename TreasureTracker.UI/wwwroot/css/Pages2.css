@@ -32,3 +32,42 @@ form {
         font-size: 18px;
         border-radius: 5px;
     }
+
+
+
+.collection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.collection-item {
+    width: calc(50% - 20px); /* Adjust the width of each item */
+    margin-bottom: 20px; /* Adjust the margin between items */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-left img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.item-right {
+    margin-top: 10px;
+}
+
+.likes-comments span {
+    margin-right: 10px; /* Adjust the margin between likes and comments */
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+    .collection-item {
+        width: 100%; /* Make items occupy full width on smaller screens */
+    }
+}
