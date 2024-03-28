@@ -4,13 +4,12 @@ using TreasureTracker.Domain.Entities;
 using TreasureTracker.Domain.Enums;
 using TreasureTracker.Domain.IRepositories;
 using TreasureTracker.Service.Configurations;
-using TreasureTracker.Service.Helpers.Exceptions;
 using TreasureTracker.Service.DTOs.Users;
 using TreasureTracker.Service.Extentions;
+using TreasureTracker.Service.Helpers.Exceptions;
 using TreasureTracker.Service.Helpers.Hasher;
 using TreasureTracker.Service.Interfaces.Auth;
 using TreasureTracker.Service.Interfaces.Users;
-using TreasureTracker.Service.Helpers.Media;
 
 namespace TreasureTracker.Service.Services.Users;
 public class UserService:IUserService
@@ -18,12 +17,17 @@ public class UserService:IUserService
     private readonly IRepository<User> _repository;
     private readonly IMapper _mapper;
     private readonly IExistEmail _existEmail;
+    private readonly IJwtTokenService _jwtTokenService;
 
-    public UserService(IRepository<User> repository, IMapper mapper, IExistEmail existEmail)
+    public UserService(IRepository<User> repository,
+                      IMapper mapper, 
+                      IExistEmail existEmail,
+                      IJwtTokenService jwtTokenService)
     {
         _repository = repository;
         _mapper = mapper;
         _existEmail = existEmail;
+        _jwtTokenService = jwtTokenService;
     }
 
     public async Task<UserViewModel> CreateAsync(UserPostModel model)
@@ -38,11 +42,12 @@ public class UserService:IUserService
         if (user is not null)
             throw new TTrackerException(409, "Siz avval ro'yhatdan o'tgansiz, iltimos pochta va parol orqali tizimga kiring!");
 
-     
         var mapped = _mapper.Map<User>(model);
         mapped.CreatedAt = DateTime.UtcNow;
         mapped.Password = HashPasswordHelper.PasswordHasher(model.Password);
         mapped.Role = Role.User;
+        mapped.IsVerified = true;
+        (mapped.RefreshToken, mapped.ExpireDate) = await _jwtTokenService.GenerateRefreshTokenAsync();
 
         var result = await _repository.InsertAsync(mapped);
         await _repository.SaveChangesAsync();

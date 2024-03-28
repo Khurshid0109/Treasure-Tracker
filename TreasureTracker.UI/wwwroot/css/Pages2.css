@@ -1,0 +1,34 @@
+﻿.form__box {
+    margin: 0 auto;
+}
+
+form {
+    margin: 0 auto;
+    width: 600px;
+}
+
+.input__box {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+    .input__box input {
+        outline: none;
+        padding: 10px;
+        width: 100%;
+        border-radius: 5px;
+    }
+
+.add__use__btn__box {
+    display: block;
+    width: 100%;
+}
+
+    .add__use__btn__box button {
+        width: 100%;
+        padding: 10px;
+        background-color: green;
+        border: none;
+        font-size: 18px;
+        border-radius: 5px;
+    }
