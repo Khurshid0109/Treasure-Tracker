@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using TreasureTracker.Data.IRepositories;
 using TreasureTracker.Domain.Entities;
 using TreasureTracker.Service.Configurations;
 using TreasureTracker.Service.DTOs.Collections;
+using TreasureTracker.Service.Extentions;
 using TreasureTracker.Service.Helpers.Exceptions;
 using TreasureTracker.Service.Helpers.Media;
 using TreasureTracker.Service.Interfaces.Categories;
@@ -65,18 +67,47 @@ public class CollectionService : ICollectionService
         return true;
     }
 
-    public Task<IEnumerable<CollectionViewModel>> GetAllAsync(PaginationParams @params)
+    public async Task<IEnumerable<CollectionViewModel>> GetAllAsync(PaginationParams @params)
     {
-        throw new NotImplementedException();
+        var collections = await _collectionRepository.GetAllAsync()
+            .ToPagedList<Collection>(@params)
+            .ToListAsync();
+
+        return _mapper.Map<IEnumerable<CollectionViewModel>>(collections);
     }
 
-    public Task<CollectionViewModel> GetByIdAsync(long id)
+    public async Task<CollectionViewModel> GetByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        var collection = await _collectionRepository.GetAllAsync()
+            .Where(c=> c.Id==id)
+            .AsNoTracking()
+            .FirstOrDefaultAsync();
+
+        if(collection is null)
+            throw new TTrackerException(404, "Collection is not found!");   
+
+        return _mapper.Map<CollectionViewModel>(collection);
     }
 
-    public Task<CollectionViewModel> UpdateAsync(long id, CollectionPostModel model)
+    public async Task<CollectionViewModel> UpdateAsync(long id, CollectionPostModel model)
     {
-        throw new NotImplementedException();
+        var collection = await _collectionRepository.GetAllAsync()
+            .Where(c => c.Id == id)
+            .AsNoTracking()
+            .FirstOrDefaultAsync();
+
+        if (collection is null)
+            throw new TTrackerException(404, "Collection is not found!");
+
+        var image = await MediaHelper.UploadFile(model.ImageUrl);
+
+        var mapped = _mapper.Map(model, collection);
+        mapped.UpdatedAt = DateTime.UtcNow;
+        mapped.ImageUrl = image;
+
+        await _collectionRepository.UpdateAasync(mapped);
+        await _collectionRepository.SaveChangesAsync();
+
+        return _mapper.Map<CollectionViewModel>(mapped);
     }
 }

@@ -22,7 +22,9 @@
     --tran-03: all 0.3s ease;
     --tran-03: all 0.2s ease;
 }
-
+a{
+    text-decoration:none;
+}
 body {
     min-height: 100vh;
     background-color: var(--primary-color);
