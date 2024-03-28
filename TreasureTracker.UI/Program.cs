@@ -70,8 +70,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Access}/{action=ExistEmail}");
 
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

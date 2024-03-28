@@ -1,22 +1,21 @@
-﻿
-* {
+﻿* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:  sans-serif;
+    font-family: sans-serif;
 }
 
 :root {
     /* ===== Colors ===== */
-    --primary-color: #0E4BF1;
-    --panel-color: #FFF;
+    --primary-color: #0e4bf1;
+    --panel-color: #fff;
     --text-color: #000;
     --black-light-color: #707070;
     --border-color: #e6e5e5;
-    --toggle-color: #DDD;
-    --box1-color: #4DA3FF;
-    --box2-color: #FFE6AC;
-    --box3-color: #E7D1FC;
+    --toggle-color: #ddd;
+    --box1-color: #4da3ff;
+    --box2-color: #ffe6ac;
+    --box3-color: #e7d1fc;
     --title-icon-color: #fff;
     /* ====== Transition ====== */
     --tran-05: all 0.5s ease;
@@ -30,16 +29,16 @@ body {
 }
 
     body.dark {
-        --primary-color: #3A3B3C;
+        --primary-color: #3a3b3c;
         --panel-color: #242526;
-        --text-color: #CCC;
-        --black-light-color: #CCC;
-        --border-color: #4D4C4C;
-        --toggle-color: #FFF;
-        --box1-color: #3A3B3C;
-        --box2-color: #3A3B3C;
-        --box3-color: #3A3B3C;
-        --title-icon-color: #CCC;
+        --text-color: #ccc;
+        --black-light-color: #ccc;
+        --border-color: #4d4c4c;
+        --toggle-color: #fff;
+        --box1-color: #3a3b3c;
+        --box2-color: #3a3b3c;
+        --box3-color: #3a3b3c;
+        --title-icon-color: #ccc;
     }
 /* === Custom Scroll Bar CSS === */
 ::-webkit-scrollbar {
@@ -62,7 +61,7 @@ body {
 
 body.dark::-webkit-scrollbar-thumb:hover,
 body.dark .activity-data::-webkit-scrollbar-thumb:hover {
-    background: #3A3B3C;
+    background: #3a3b3c;
 }
 
 nav {
@@ -407,6 +406,36 @@ nav.close ~ .dashboard .top {
     color: var(--text-color);
 }
 
+.users__title__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .users__title__box .title {
+        margin: 20px 0px;
+    }
+
+.add__btn {
+    padding: 7px 20px;
+    outline: none;
+}
+
+.action__btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.edit__btn {
+    background-color: orange;
+    padding: 5px 15px;
+}
+
+.delete__btn {
+    background-color: red;
+}
+
 @media (max-width: 1000px) {
     nav {
         width: 73px;
@@ -457,7 +486,7 @@ nav.close ~ .dashboard .top {
         }
 
     .activity .activity-data {
-        overflow-X: scroll;
+        overflow-x: scroll;
     }
 }
 
@@ -522,4 +551,51 @@ nav.close ~ .dashboard .top {
             left: 0;
             width: 100%;
         }
+}
+
+#table {
+    margin-top: 30px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+caption {
+    caption-side: bottom;
+    padding: 10px;
+    font-weight: bold;
+}
+
+thead,
+tfoot {
+    background-color: rgb(228 240 245);
+}
+
+th,
+td {
+    border: 1px solid rgb(160 160 160);
+    text-align: center;
+    padding: 8px 10px;
+}
+
+    td:last-of-type {
+        text-align: center;
+    }
+
+tbody > tr:nth-of-type(even) {
+    background-color: rgb(237 238 242);
+}
+
+tfoot th {
+    text-align: right;
+}
+
+tfoot td {
+    font-weight: bold;
 }
