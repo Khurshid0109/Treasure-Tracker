@@ -10,6 +10,7 @@ using TreasureTracker.Service.Extentions;
 using TreasureTracker.Service.Helpers.Hasher;
 using TreasureTracker.Service.Interfaces.Auth;
 using TreasureTracker.Service.Interfaces.Users;
+using TreasureTracker.Service.Helpers.Media;
 
 namespace TreasureTracker.Service.Services.Users;
 public class UserService:IUserService
@@ -37,6 +38,7 @@ public class UserService:IUserService
         if (user is not null)
             throw new TTrackerException(409, "Siz avval ro'yhatdan o'tgansiz, iltimos pochta va parol orqali tizimga kiring!");
 
+     
         var mapped = _mapper.Map<User>(model);
         mapped.CreatedAt = DateTime.UtcNow;
         mapped.Password = HashPasswordHelper.PasswordHasher(model.Password);

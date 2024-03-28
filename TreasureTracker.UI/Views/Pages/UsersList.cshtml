@@ -1,0 +1,147 @@
+﻿@model IEnumerable<UserViewModel>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../css/Pages.css" />
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet"
+          href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+
+    <title>Admin Dashboard Panel</title>
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="images/logo.png" alt="" />
+            </div>
+
+            <span class="logo_name">Treasure Tracker</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li>
+                    <a href="#">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Dahsboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uil uil-files-landscapes"></i>
+                        <span class="link-name">Collection</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uil uil-files-landscapes"></i>
+                        <span class="link-name">My collection</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html">
+                        <i class="uil uil-chart"></i>
+                        <span class="link-name">Users</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li>
+                    <a href="#">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here..." />
+            </div>
+
+            <img src="images/profile.jpg" alt="" />
+        </div>
+
+        <div class="dash-content">
+            <div class="overview users__title__box">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">Users</span>
+                </div>
+                <div class="add__btn__box">
+                    <button class="add__btn">Add users</button>
+                </div>
+            </div>
+
+            <section id="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">T/r</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Firstname</th>
+                            <th scope="col">Lastname</th>
+                            <th scope="col">CreatedAt</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    @{
+                        int count = 1;
+                    }
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <th scope="row">@count</th>
+                                <td>@user.Id</td>
+                                <td>@user.FirstName</td>
+                                <td>Avazbekov</td>
+                                <td>2002.10.05</td>
+                                <td>Active</td>
+                                <td>
+                                    <div class="action__btn__box">
+                                        <button class="action__btn edit__btn">Edit</button>
+                                        <button class="action__btn delete__btn">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            count++;
+                        }
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </section>
+
+    <script src="../js/Page.js"></script>
+</body>
+</html>
