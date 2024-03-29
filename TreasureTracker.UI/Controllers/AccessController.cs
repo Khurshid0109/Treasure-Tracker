@@ -66,7 +66,7 @@ namespace TreasureTracker.UI.Controllers
                 }
             }
 
-            return View();
+            return View(model);
         }
 
         [HttpGet]
@@ -76,13 +76,13 @@ namespace TreasureTracker.UI.Controllers
         }
 
         [HttpPost("ExistEmail")]
-        public async Task<IActionResult> ExistEmail(string email)
+        public async Task<IActionResult> ExistEmail(ExistEmailPostModel model)
         {
-            if (!string.IsNullOrWhiteSpace(email))
+            if (ModelState.IsValid)
             {
-                TempData["Email"] = email;
+                TempData["Email"] = model.Email;
 
-                var result = await _checkerService.EmailExist(email);
+                var result = await _checkerService.EmailExist(model.Email);
 
                 if (result is ExistEmailEnum.EmailNotFound)
                     return Redirect("~/Access/Register");
@@ -93,7 +93,7 @@ namespace TreasureTracker.UI.Controllers
                 return Redirect("~/Access/Login");
             }
 
-            return View();
+            return View(model);
         }
 
         [HttpGet]
@@ -143,7 +143,7 @@ namespace TreasureTracker.UI.Controllers
                     ModelState.AddModelError("", ex.Message);
                 }
             }
-            return View();
+            return View(model);
         }
 
         [HttpGet]
@@ -169,7 +169,7 @@ namespace TreasureTracker.UI.Controllers
                     return Redirect("~/Home/Index");
             }
 
-            return View();
+            return View(model);
         }
     }
 }

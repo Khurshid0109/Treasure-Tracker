@@ -19,10 +19,12 @@
                 <div class="input-group">
                     <input asp-for="Email" value="@ViewBag.Email" readonly>
                     <label asp-for="Email">Email</label>
+                    <span asp-validation-for="Email" class="validation"></span>
                 </div>
                 <div class="input-group">
                     <input asp-for="Code" type="number" required>
                     <label asp-for="Code">Verification Code</label>
+                    <span asp-validation-for="Code" class="validation"></span>
                 </div>
 
                 <button type="submit">Submit</button>

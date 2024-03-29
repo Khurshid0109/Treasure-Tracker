@@ -4,10 +4,11 @@ using TreasureTracker.Service.Helpers;
 namespace TreasureTracker.Service.DTOs.Auth;
 public class LoginPostModel
 {
-    [Required]
+    [Required(ErrorMessage ="Email is required.")]
     [TTrackerEmailAttribute(ErrorMessage = "Email is not valid.")]
     public string Email { get; set; }
 
-    [Required]
+    [Required(ErrorMessage ="Email is required")]
+    [MinLength(6,ErrorMessage ="Password should be at least 6 charactes.")]
     public string Password { get; set; }
 }
