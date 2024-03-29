@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="nav_about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="nav_collections" xml:space="preserve">
+    <value>Collections</value>
+  </data>
+  <data name="nav_first_name" xml:space="preserve">
+    <value>Firstname</value>
+  </data>
+  <data name="nav_home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="nav_last_name" xml:space="preserve">
+    <value>Lastname</value>
+  </data>
+  <data name="nav_role" xml:space="preserve">
+    <value>Role</value>
+  </data>
   <data name="str_welcome_message" xml:space="preserve">
     <value>Hello</value>
   </data>

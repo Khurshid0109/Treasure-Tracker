@@ -13,6 +13,10 @@ body {
     background-color: black;
 }
 
+.validation{
+    color:red;
+}
+
 .wrapper {
     position: relative;
     width: 400px;
