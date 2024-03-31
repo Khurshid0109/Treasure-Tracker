@@ -132,7 +132,7 @@ namespace TreasureTracker.UI.Controllers
                         Response.Cookies.Append("token", result.Token, cookieOptions);
 
                         // Redirect to the desired page after successful registration
-                        return Redirect("~/Home/Index");
+                        return Redirect("~/Access/Verification");
                     }
 
                     // Handle the case when registration was not successful
