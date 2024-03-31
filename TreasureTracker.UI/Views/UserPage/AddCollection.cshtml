@@ -11,6 +11,7 @@
 
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="../css/Pages.css" />
+    <link rel="stylesheet" href="../css/Pages2.css"
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet"
@@ -22,7 +23,7 @@
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="images/logo.png" alt="" />
+                <img src="../SiteImages/logo.png" alt="" />
             </div>
 
             <span class="logo_name">Treasure Tracker</span>
@@ -88,31 +89,30 @@
             <div class="overview">
                 <div class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Dashboard</span>
+                    <span class="text">Add Collection</span>
                 </div>
             </div>
-            <form asp-controller="Pages" asp-action="AddUser" method="post" enctype="multipart/form-data">
+            <form asp-controller="UserPage" asp-action="AddCollection" method="post" enctype="multipart/form-data">
                 <div class="form__box">
-                    <form>
-                        <div class="input__box">
-                            <input asp-for="Name" type="text" placeholder="Name" />
-                        </div>
-                        <div class="input__box">
-                            <input asp-for="Description" type="text" placeholder="Provide information .." />
-                        </div>
-                     @*    <div class="input__box">
-                            <input  type="text" placeholder="Email" />
-                        </div>
-                        <div class="input__box">
-                            <input asp-for="Password" type="text" placeholder="Password" />
-                        </div> *@
+                    <div class="input__box">
+                        <label asp-for="Name">Name</label>
+                        <input asp-for="Name" type="text" placeholder="Name" />
+                        <span asp-validation-for="Name" class="validation"></span>
+                    </div>
+                    <div class="input__box">
+                        <label asp-for="Description">Description</label>
+                        <textarea asp-for="Description" type="text" placeholder="Provide information .."></textarea>
+                        <span asp-validation-for="Description" class="validation"></span>
+                    </div>
+                    <div class="input__box">
+                        <label asp-for="ImageUrl">Image</label>
+                        <input asp-for="ImageUrl" type="file" placeholder="Image" />
+                        <span asp-validation-for="ImageUrl" class="validation"></span>
+                    </div>
 
-                        <div class="add__btn__box">
-                            <button class="add__use__btn__box" type="submit">
-                                <a href="/Pages/AddUser">Add user</a>
-                            </button>
-                        </div>
-                    </form>
+                    <div class="add__btn__box">
+                        <button class="add__use__btn__box" type="submit">Add Collection</button>
+                    </div>
                 </div>
             </form>
 

@@ -9,6 +9,6 @@ public class LoginPostModel
     public string Email { get; set; }
 
     [Required(ErrorMessage ="Email is required")]
-    [MinLength(6,ErrorMessage ="Password should be at least 6 charactes.")]
+    [MinLength(5,ErrorMessage ="Password should be at least 6 charactes.")]
     public string Password { get; set; }
 }

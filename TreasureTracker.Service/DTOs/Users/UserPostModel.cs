@@ -17,7 +17,7 @@ public class UserPostModel
     [TTrackerEmailAttribute(ErrorMessage = "Email is not valid.")]
     public string Email { get; set; }
     [Required(ErrorMessage ="Password is required.")]
-    [MinLength(6,ErrorMessage ="It should contain at least 6 characters.")]
+    [MinLength(5,ErrorMessage ="It should contain at least 6 characters.")]
     [MaxLength(10,ErrorMessage = "It should contain maximum 10 characters.")]
     public string Password { get; set; }
 }

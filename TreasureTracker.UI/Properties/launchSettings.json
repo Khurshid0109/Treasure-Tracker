@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Treasure-tracker": { // REPLACE PROJECT_NAME WITH YOU ACTUAL PROJECT NAME
+    "Treasure-tracker": { 
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
@@ -35,5 +35,4 @@
       "ASPNETCORE_ENVIRONMENT": "Development"
     }
   }
-}
 }

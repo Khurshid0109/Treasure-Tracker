@@ -31,7 +31,7 @@ public class CategoryService : ICategoryService
             throw new TTrackerException(400,"Category is already exist");
 
         var mapped = _mapper.Map<Category>(model);
-        mapped.CreatedAt = DateTime.Now;
+        mapped.CreatedAt = DateTime.UtcNow;
 
         var result = await _categoryRepository.InsertAsync(mapped);
         await _categoryRepository.SaveChangesAsync();

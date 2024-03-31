@@ -305,3 +305,22 @@ body.darkmode {
 .darkmode .user-btn:hover {
     background-color: var(--dark-color);
 }
+
+
+
+
+@media(max-width: 820px) {
+    .navbar{
+        position: relative;
+    }
+    .navbar ul{
+        display: flex;
+        flex-direction: column;
+        position:absolute;
+        top: 0px;
+        left: 0px;
+        background-color: white;
+
+    }
+
+}

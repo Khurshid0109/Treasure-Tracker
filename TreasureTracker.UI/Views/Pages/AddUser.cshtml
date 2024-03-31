@@ -24,7 +24,7 @@
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="images/logo.png" alt="" />
+                <img src="../SiteImages/logo.png" alt="" />
             </div>
 
             <span class="logo_name">Treasure Tracker</span>
@@ -101,26 +101,30 @@
             </div>
             <form asp-controller="Pages" asp-action="AddUser" method="post" enctype="multipart/form-data">
                 <div class="form__box">
-                    <form>
-                        <div class="input__box">
-                            <input asp-for="FirstName" type="text" placeholder="Firstname" />
-                        </div>
-                        <div class="input__box">
-                            <input asp-for="LastName" type="text" placeholder="Lastname" />
-                        </div>
-                        <div class="input__box">
-                            <input asp-for="Email" type="text" placeholder="Email" />
-                        </div>
-                        <div class="input__box">
-                            <input asp-for="Password" type="text" placeholder="Password" />
-                        </div>
+                    <div class="input__box">
+                        <label asp-for="FirstName">FirstName</label>
+                        <input asp-for="FirstName" type="text" placeholder="Firstname" />
+                        <span asp-validation-for="FirstName" class="validation"></span>
+                    </div>
+                    <div class="input__box">
+                        <label asp-for="LastName">LastName</label>
+                        <input asp-for="LastName" type="text" placeholder="Lastname" />
+                        <span asp-validation-for="LastName" class="validation"></span>
+                    </div>
+                    <div class="input__box">
+                        <label asp-for="Email">Email</label>
+                        <input asp-for="Email" type="text" placeholder="Email" />
+                        <span asp-validation-for="Email" class="validation"></span>
+                    </div>
+                    <div class="input__box">
+                        <label asp-for="Password">Password</label>
+                        <input asp-for="Password" type="text" placeholder="Password" />
+                        <span asp-validation-for="Password" class="validation"></span>
+                    </div>
 
-                        <div class="add__btn__box">
-                            <button class="add__use__btn__box" type="submit">
-                                <a href="/Pages/AddUser">Add user</a>
-                            </button>
-                        </div>
-                    </form>
+                    <div class="add__btn__box">
+                        <button class="add__use__btn__box" type="submit">Add user </button>
+                    </div>
                 </div>
             </form>
         </div>

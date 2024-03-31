@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UserViewModel>
+﻿@model CategoryPostModel
 @{
     Layout = null;
 }
@@ -12,11 +12,13 @@
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="../css/Pages.css" />
 
+    <link rel="stylesheet" href="../css/Pages2.css" />
+
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet"
           href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 
-    <title>Admin Dashboard Panel</title>
+    <title>Admin Dashboard Panel Add users</title>
 </head>
 <body>
     <nav>
@@ -100,51 +102,21 @@
             <div class="overview users__title__box">
                 <div class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Users</span>
-                </div>
-                <div class="add__btn__box">
-                    <button class="add__btn"><a asp-controller="Pages" asp-action="AddUser">Add users</a></button>
+                    <span class="text">Add Category</span>
                 </div>
             </div>
-
-            <section id="table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col">T/r</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Firstname</th>
-                            <th scope="col">Lastname</th>
-                            <th scope="col">CreatedAt</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    @{
-                        int count = 1;
-                    }
-                    <tbody>
-                        @foreach (var user in Model)
-                        {
-                            <tr>
-                                <th scope="row">@count</th>
-                                <td>@user.Id</td>
-                                <td>@user.FirstName</td>
-                                <td>@user.LastName</td>
-                                <td> @user.CreatedAt.ToString("dd.MM.yyyy")</td>
-                                <td>@user.IsDeleted</td>
-                                <td>
-                                    <div class="action__btn__box">
-                                        <button class="action__btn edit__btn">Edit</button>
-                                        <button class="action__btn delete__btn">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            count++;
-                        }
-                    </tbody>
-                </table>
-            </section>
+            <form asp-controller="Pages" asp-action="AddCategory" method="post" enctype="multipart/form-data">
+                <div class="form__box">
+                    <div class="input__box">
+                        <label asp-for="Name">Name</label>
+                        <input asp-for="Name" type="text" placeholder="Category" />
+                        <span asp-validation-for="Name" class="validation"></span>
+                    </div>
+                    <div class="add__btn__box">
+                        <button class="add__use__btn__box" type="submit">Add category </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
 
