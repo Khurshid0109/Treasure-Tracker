@@ -75,6 +75,10 @@ body {
             top: -5px;
         }
 
+        .input-group label.active{
+            top: -5px;
+        }
+
 .remember {
     margin: -5px 0 15px 5px;
 }

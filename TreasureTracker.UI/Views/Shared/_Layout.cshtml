@@ -15,7 +15,9 @@
 
     <!--Navbar  -->
     <div class="navbar">
-        <ul>
+        <button class="humb" onclick="handleModal()"></button>
+        <ul id="modal">
+            <span onclick="handleModal()"></span>
             <li class="navbar-item">
                 <a href="#">@_localization.Getkey("nav_home")</a>
             </li>
@@ -100,6 +102,13 @@
             @RenderBody()
         </main>
     </div>
+
+
+    <script>
+        function handleModal() {
+            document.getElementById('modal').classList.toggle('active')
+        }
+    </script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

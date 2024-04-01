@@ -27,6 +27,7 @@ public class UserCodeService:IUserCodeService
     public async Task<UserCodeViewModel> CreateAsync(UserCode model)
     {
         var user = await _userRepository.GetAllAsync()
+            .IgnoreQueryFilters()
             .Where(u => u.Id == model.UserId)
             .AsNoTracking()
             .FirstOrDefaultAsync();

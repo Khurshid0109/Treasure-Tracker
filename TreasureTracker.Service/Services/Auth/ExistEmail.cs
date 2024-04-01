@@ -91,12 +91,11 @@ public class ExistEmail:IExistEmail
 
         var user = await _repository
             .GetAllAsync()
+            .IgnoreQueryFilters()
             .Where(u => u.Email == email)
             .Select(u => new { u.Id })
             .FirstOrDefaultAsync();
 
-        if (user is null)
-            return false;
 
         var randomNumber = new Random().Next(100000, 999999);
 

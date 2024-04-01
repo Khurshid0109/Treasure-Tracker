@@ -17,7 +17,7 @@
             <form asp-controller="access" asp-action="verification" method="post" enctype="multipart/form-data">
                 <h2>Verification</h2>
                 <div class="input-group">
-                    <input asp-for="Email" value="@ViewBag.Email" readonly>
+                    <input id="emailInput" asp-for="Email" readonly>
                     <label asp-for="Email">Email</label>
                     <span asp-validation-for="Email" class="validation"></span>
                 </div>
@@ -31,16 +31,25 @@
             </form>
         </div>
     </div>
+    <script>
+        let email = localStorage.getItem("email");
+
+        document.getElementById('emailInput').value = email;
+    </script>
 </body>
 </html>
 
-@section Scripts {
+@* @section Scripts {
     <script>
         $(document).ready(function () {
             $('.custom-file-input').on("change", function () {
                 var fileName = $(this).val().split("\\").pop();
                 $(this).next('.custom-file-label').html(fileName);
             });
+
+            let email = localStorage.getItem("email");
+            
+            $('#emailInput').val(email);
         });
     </script>
-}
+} *@
