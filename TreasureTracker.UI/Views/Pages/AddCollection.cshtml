@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CategoryViewModel>
+﻿@model CollectionPostModel
 @{
     Layout = null;
 }
@@ -11,6 +11,7 @@
 
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="../css/Pages.css" />
+    <link rel="stylesheet" href="../css/Pages2.css" />
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet"
@@ -97,50 +98,44 @@
         </div>
 
         <div class="dash-content">
-            <div class="overview users__title__box">
+            <div class="overview">
                 <div class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Users</span>
-                </div>
-                <div class="add__btn__box">
-                    <button class="add__btn"><a asp-controller="Pages" asp-action="AddCategory">Add category</a></button>
+                    <span class="text">Add Collection</span>
                 </div>
             </div>
 
-            <section id="table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col">T/r</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">CreatedAt</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    @{
-                        int count = 1;
-                    }
-                    <tbody>
-                        @foreach (var category in Model)
-                        {
-                            <tr>
-                                <th scope="row">@count</th>
-                                <td>@category.Id</td>
-                                <td>@category.Name</td>
-                                <td> @category.CreatedAt.ToString("dd.MM.yyyy")</td>
-                                <td>
-                                    <div class="action__btn__box">
-                                        <button class="action__btn edit__btn"><a>Edit</a></button>
-                                        <button class="action__btn delete__btn"><a>Delete</a></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            count++;
-                        }
-                    </tbody>
-                </table>
-            </section>
+            <form asp-controller="Pages" asp-action="AddCollection" method="post" enctype="multipart/form-data">
+                <div class="form__box">
+                    <div class="input__box">
+                        <label asp-for="Name">Name</label>
+                        <input asp-for="Name" type="text" placeholder="Name" />
+                        <span asp-validation-for="Name" class="validation"></span>
+                    </div>
+                    <div class="input__box">
+                        <label asp-for="Description">Description</label>
+                        <textarea asp-for="Description" type="text" placeholder="Provide information .."></textarea>
+                        <span asp-validation-for="Description" class="validation"></span>
+                    </div>
+                    <div class="input__box">
+                        <label asp-for="ImageUrl">Image</label>
+                        <input asp-for="ImageUrl" type="file" placeholder="Image" />
+                        <span asp-validation-for="ImageUrl" class="validation"></span>
+                    </div>
+                    <div class="input__box">
+                        <label for="category">Category</label>
+                        <select id="category" class="form-control">
+                            <option value="">Select Category</option>
+                        </select>
+                        <span id="category-error" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" id="categoryId" name="CategoryId" asp-for="CategoryId" />
+
+                    <div class="add__btn__box">
+                        <button class="add__use__btn__box" type="submit">Add Collection</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
 
