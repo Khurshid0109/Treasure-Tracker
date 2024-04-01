@@ -109,6 +109,14 @@
                         <input asp-for="ImageUrl" type="file" placeholder="Image" />
                         <span asp-validation-for="ImageUrl" class="validation"></span>
                     </div>
+                    <div class="input__box">
+                        <label for="category">Category</label>
+                        <select id="category" class="form-control">
+                            <option value="">Select Category</option>
+                        </select>
+                        <span id="category-error" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" id="categoryId" name="CategoryId" asp-for="CategoryId"/>
 
                     <div class="add__btn__box">
                         <button class="add__use__btn__box" type="submit">Add Collection</button>
@@ -118,7 +126,7 @@
 
         </div>
     </section>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/Page.js"></script>
 </body>
 </html>

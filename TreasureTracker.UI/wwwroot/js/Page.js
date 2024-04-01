@@ -30,3 +30,29 @@ sidebarToggle.addEventListener("click", () => {
         localStorage.setItem("status", "open");
     }
 })
+
+
+
+$(document).ready(function () {
+    // Fetch categories list via AJAX
+    $.ajax({
+        url: '/UserPage/GetCategories',
+        type: 'GET',
+        success: function (data) {
+            var select = $('#category');
+            console.log("ajax invoked");
+            $.each(data, function (index, category) {
+                select.append($('<option></option>').val(category.id).text(category.name));
+            });
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log('Error fetching categories:', errorThrown);
+        }
+    });
+
+    // Handle category selection
+    $('#category').change(function () {
+        var categoryId = $(this).val();
+        $('#categoryId').val(categoryId);
+    });
+});
