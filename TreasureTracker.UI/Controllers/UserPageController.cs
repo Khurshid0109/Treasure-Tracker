@@ -35,9 +35,13 @@ public class UserPageController : Controller
     [HttpGet]
     public async Task<IActionResult> Collections()
     {
+        var id = GetUserId();
+
         var collections = await _collectionRepository.GetAllAsync()
+            .Where(c => c.UserId == id)
             .AsNoTracking()
             .ToListAsync();
+
         var result = _mapper.Map<IEnumerable<CollectionViewModel>>(collections);
         return View(result);
     }

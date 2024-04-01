@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CategoryViewModel>
+﻿@model IEnumerable<CollectionViewModel>
 @{
     Layout = null;
 }
@@ -11,6 +11,7 @@
 
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="../css/Pages.css" />
+    <link rel="stylesheet" href="../css/Pages2.css" />
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet"
@@ -49,7 +50,7 @@
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="Pages" asp-action="PersonalCollectionsList">
+                    <a asp-controller="Pages" asp-action="PerCollectionsList">
                         <i class="uil uil-files-landscapes"></i>
                         <span class="link-name">My collection</span>
                     </a>
@@ -97,50 +98,45 @@
         </div>
 
         <div class="dash-content">
-            <div class="overview users__title__box">
+            <div class="overview">
                 <div class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Users</span>
+                    <span class="text">My Collections</span>
                 </div>
                 <div class="add__btn__box">
-                    <button class="add__btn"><a asp-controller="Pages" asp-action="AddCategory">Add category</a></button>
+                    <button class="add__btn"><a asp-controller="Pages" asp-action="AddCollection">Add collection</a></button>
                 </div>
             </div>
 
-            <section id="table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col">T/r</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">CreatedAt</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    @{
-                        int count = 1;
-                    }
-                    <tbody>
-                        @foreach (var category in Model)
-                        {
-                            <tr>
-                                <th scope="row">@count</th>
-                                <td>@category.Id</td>
-                                <td>@category.Name</td>
-                                <td> @category.CreatedAt.ToString("dd.MM.yyyy")</td>
-                                <td>
-                                    <div class="action__btn__box">
-                                        <button class="action__btn edit__btn"><a>Edit</a></button>
-                                        <button class="action__btn delete__btn"><a>Delete</a></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            count++;
-                        }
-                    </tbody>
-                </table>
-            </section>
+            <div class="col-md-8">
+                @foreach (var item in Model)
+                {
+                    var photo = "../images/" + (item.ImageUrl ?? "profile-pic.jpg");
+                    <div class="user-row">
+                        <div class="user-avatar">
+                            <img src="@photo" alt="User Avatar">
+                        </div>
+                        <div class="user-info">
+                            <h3>@item.Name</h3>
+                            <p>
+                                @if (item.Description.Length > 100)
+                                {
+                                    @item.Description.Substring(0, 100)
+                                }
+                                else
+                                {
+                                    @item.Description
+                                }
+                                ...
+                            </p>
+                        </div>
+                        <div class="delete-button">
+                            <button>Delete</button>
+                        </div>
+                    </div>
+                }
+
+            </div>
         </div>
     </section>
 
