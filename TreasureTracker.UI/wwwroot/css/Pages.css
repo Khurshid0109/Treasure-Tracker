@@ -114,7 +114,7 @@ nav {
         opacity: 0;
         pointer-events: none;
     }
-
+    
     nav .menu-items {
         margin-top: 40px;
         height: calc(100% - 90px);
@@ -304,6 +304,10 @@ nav.close ~ .dashboard .top {
 .top img {
     width: 40px;
     border-radius: 50%;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
 }
 
 .dashboard .dash-content {
@@ -415,6 +419,7 @@ nav.close ~ .dashboard .top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
     .users__title__box .title {
@@ -560,6 +565,7 @@ nav.close ~ .dashboard .top {
 
 #table {
     margin-top: 30px;
+    overflow: scroll;
 }
 
 table {
@@ -569,6 +575,7 @@ table {
     font-size: 0.8rem;
     letter-spacing: 1px;
     width: 100%;
+    min-width: 800px;
 }
 
 caption {
@@ -582,19 +589,28 @@ tfoot {
     background-color: rgb(228 240 245);
 }
 
-th,
-td {
+
+tr th,
+tr td {
     border: 1px solid rgb(160 160 160);
     text-align: center;
     padding: 8px 10px;
+    color: var(--text-color);
 }
+
+tr th{
+    color: #333;
+}
+
+
+
 
     td:last-of-type {
         text-align: center;
     }
 
-tbody > tr:nth-of-type(even) {
-    background-color: rgb(237 238 242);
+tbody > tr {
+    background-color: ##3a3b3c;
 }
 
 tfoot th {

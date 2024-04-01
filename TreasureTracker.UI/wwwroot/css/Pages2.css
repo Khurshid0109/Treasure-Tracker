@@ -1,4 +1,47 @@
-﻿.form__box {
+﻿
+:root {
+    /* ===== Colors ===== */
+    --primary-color: #0e4bf1;
+    --panel-color: #fff;
+    --text-color: #000;
+    --black-light-color: #707070;
+    --border-color: #e6e5e5;
+    --toggle-color: #ddd;
+    --box1-color: #4da3ff;
+    --box2-color: #ffe6ac;
+    --box3-color: #e7d1fc;
+    --title-icon-color: #fff;
+    /* ===== Dark Colors ===== */
+    --dark-item-color: lawngreen;
+    /* ====== Transition ====== */
+    --tran-05: all 0.5s ease;
+    --tran-03: all 0.3s ease;
+    --tran-03: all 0.2s ease;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--primary-color);
+}
+
+    body.dark {
+        --primary-color: #3a3b3c;
+        --panel-color: #242526;
+        --text-color: lawngreen;
+        --black-light-color: #ccc;
+        --border-color: #4d4c4c;
+        --toggle-color: #fff;
+        --box1-color: #3a3b3c;
+        --box2-color: #3a3b3c;
+        --box3-color: #3a3b3c;
+        --title-icon-color: lawngreen;
+    }
+
+.form__box {
     margin: 0 auto;
 }
 
@@ -7,21 +50,45 @@ form {
     width: 600px;
 }
 
+.col-md-8{
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
 .input__box {
     width: 100%;
     margin-bottom: 20px;
 }
 
+.input__box label{
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+    .input__box select,
+    .input__box textarea,
     .input__box input {
         outline: none;
         padding: 10px;
         width: 100%;
         border-radius: 5px;
+        border: 1px solid var(--text-color);
+        background-color: var(--box1-color);
+        color: var(--text-color);
     }
 
 .add__use__btn__box {
     display: block;
     width: 100%;
+
+    padding: 8px 15px;
+    font-size: 14px;
+    color: var(--text-color);
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    background-color: var(--box1-color);
+    border-bottom: 2px solid var(--text-color);
+    
 }
 
     .add__use__btn__box button {
@@ -60,15 +127,25 @@ form {
     flex-grow: 1;
 }
 
-    .user-info h3,
+    .user-info ,
     .user-info p {
         margin: 0;
+        color: var(--text-color);
     }
-
+    .user-info p {
+        color: var(--black-light-color)
+    }
 .delete-button button {
     border: 3px solid lawngreen;
     border-radius: 3px;
     padding: 7px 12px;
     cursor: pointer;
+}
+
+
+@media(max-width: 700px){
+    form {
+        width: 100%;
+    }
 }
 /*Collection structure css */

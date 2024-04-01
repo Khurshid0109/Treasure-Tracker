@@ -28,8 +28,8 @@
                     <span asp-validation-for="LastName" class="validation"></span>
                 </div>
                 <div class="input-group">
-                    <input asp-for="Email" value="@ViewBag.Email" readonly>
-                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" id="emailInput" readonly>
+                    <label asp-for="Email" id="label">Email</label>
                     <span asp-validation-for="Email" class="validation"></span>
                 </div>
                 <div class="input-group">
@@ -47,17 +47,29 @@
             </form>
         </div>
     </div>
+    <script>
+        let email = localStorage.getItem("email");
 
+        document.getElementById('emailInput').value = email;
+
+        if (document.getElementById('emailInput').value) {
+            document.getElementById('label').classList.add('active')
+        }
+    </script>
 </body>
 </html>
 
-@section Scripts {
+@* @section Scripts {
     <script>
         $(document).ready(function () {
             $('.custom-file-input').on("change", function () {
                 var fileName = $(this).val().split("\\").pop();
                 $(this).next('.custom-file-label').html(fileName);
             });
+
+            let email = localStorage.getItem("email");
+
+            $('#emailInput').val(email);
         });
-    </script>
+    </script> *@
 }
