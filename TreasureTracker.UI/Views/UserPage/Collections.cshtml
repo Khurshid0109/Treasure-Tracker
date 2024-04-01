@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<CollectionViewModel>
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -43,7 +44,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="users.html">
+                    <a href="#">
                         <i class="uil uil-chart"></i>
                         <span class="link-name">Settings</span>
                     </a>
@@ -81,13 +82,13 @@
                 <input type="text" placeholder="Search here..." />
             </div>
 
-            <img src="images/profile.jpg" alt="" />
+            <img src="../SiteImages/profile-pic.jpg" alt="" />
         </div>
         <div class="dash-content">
             <div class="overview users__title__box">
                 <div class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Users</span>
+                    <span class="text">Collections</span>
                 </div>
                 <div class="add__btn__box">
                     <button class="add__btn"><a asp-controller="UserPage" asp-action="AddCollection">Add collection</a></button>
@@ -95,43 +96,37 @@
             </div>
 
             <div class="col-md-8">
-                <h3 class="text-white">Nimadfi</h3>
-@* 
-                 @foreach (var item in Model.leftSide.Reverse())
-                { 
-                    var photo = "~/images/" + (item.ImageUrl ?? "logo.jpg");
-
-                    <div class="card mt-3 custom-card">
-                        <a href="@Url.Action("Details", "Home", new { id = item.Id })">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="@photo" class="img-fluid custom-img" asp-append-version="true" />
-                                </div>
-                                <div class="col-md-8 mt-1">
-
-                                    <p> @item.CreatedAt.ToString("MMM d, yyyy")</p>
-
-                                    <h3 class="card-title mt-1">@item.Title</h3>
-                                    <p>
-                                        @if (item.Description.Length > 100)
-                                        {
-                                            @item.Description.Substring(0, 100)
-                                        }
-                                        else
-                                        {
-                                            @item.Description
-                                        }
-                                        ...
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
+                @foreach (var item in Model)
+                {
+                    var photo = "../images/" + (item.ImageUrl ?? "profile-pic.jpg");
+                    <div class="user-row">
+                        <div class="user-avatar">
+                            <img src="@photo" alt="User Avatar">
+                        </div>
+                        <div class="user-info">
+                            <h3>@item.Name</h3>
+                            <p>
+                                @if (item.Description.Length > 100)
+                                {
+                                    @item.Description.Substring(0, 100)
+                                }
+                                else
+                                {
+                                    @item.Description
+                                }
+                                ...
+                            </p>
+                        </div>
+                        <div class="delete-button">
+                            <button>Delete</button>
+                        </div>
                     </div>
-                }  *@
+                }
+
             </div>
-         
+
         </div>
-       
+
     </section>
 
     <script src="../js/Page.js"></script>

@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Localization;
 using TreasureTracker.Service.Interfaces.Users;
 using TreasureTracker.Service.Services.Languages;
 

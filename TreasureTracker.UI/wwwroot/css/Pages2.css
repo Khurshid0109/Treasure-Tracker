@@ -33,41 +33,42 @@ form {
         border-radius: 5px;
     }
 
-
-
-.collection {
+    /*Collection structure css */
+.user-row {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
-    margin-top: 20px; /* Adjust as needed */
-}
-
-.collection-item {
-    width: calc(50% - 20px); /* Adjust the width of each item */
-    margin-bottom: 20px; /* Adjust the margin between items */
-    padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin: 0 auto;
+    width: 800px;
 }
 
-.item-left img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
+.user-avatar {
+    margin-right: 10px;
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
 }
 
-.item-right {
-    margin-top: 10px;
-}
-
-.likes-comments span {
-    margin-right: 10px; /* Adjust the margin between likes and comments */
-}
-
-/* Media query for responsive design */
-@media (max-width: 768px) {
-    .collection-item {
-        width: 100%; /* Make items occupy full width on smaller screens */
+    .user-avatar img {
+        width: 57px;
+        height: 57px;
+        border-radius: 50%;
     }
+
+.user-info {
+    flex-grow: 1;
 }
+
+    .user-info h3,
+    .user-info p {
+        margin: 0;
+    }
+
+.delete-button button {
+    border: 3px solid lawngreen;
+    border-radius: 3px;
+    padding: 7px 12px;
+    cursor: pointer;
+}
+/*Collection structure css */
