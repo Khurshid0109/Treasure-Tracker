@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="category" xml:space="preserve">
+    <value>Turkum</value>
+  </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>Sahifa</value>
+  </data>
+  <data name="my_collection" xml:space="preserve">
+    <value>To'plam</value>
+  </data>
   <data name="nav_about" xml:space="preserve">
     <value>Biz haqimizda</value>
   </data>
@@ -135,7 +144,13 @@
   <data name="nav_role" xml:space="preserve">
     <value>Lavozimi</value>
   </data>
+  <data name="settings" xml:space="preserve">
+    <value>Sozlamalar</value>
+  </data>
   <data name="str_welcome_message" xml:space="preserve">
     <value>Salom</value>
+  </data>
+  <data name="users_list" xml:space="preserve">
+    <value>Foydalanuvchilar</value>
   </data>
 </root>

@@ -32,19 +32,19 @@
                 <li>
                     <a asp-controller="UserPage" asp-action="Dashboard">
                         <i class="uil uil-estate"></i>
-                        <span class="link-name">Dashboard</span>
+                        <span class="link-name">@_localization.Getkey("dashboard")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-controller="UserPage" asp-action="Collections">
                         <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">My collection</span>
+                        <span class="link-name">@_localization.Getkey("my_collection")</span>
                     </a>
                 </li>
                 <li>
                     <a href="users.html">
                         <i class="uil uil-chart"></i>
-                        <span class="link-name">Settings</span>
+                        <span class="link-name">@_localization.Getkey("settings")</span>
                     </a>
                 </li>
             </ul>
