@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TreasureTracker.Data.Db;
@@ -11,9 +12,11 @@ using TreasureTracker.Data.Db;
 namespace TreasureTracker.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240402103946_Likeadded")]
+    partial class Likeadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,6 +170,38 @@ namespace TreasureTracker.Data.Migrations
                     b.ToTable("Items");
                 });
 
+            modelBuilder.Entity("TreasureTracker.Domain.Entities.ItemTag", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<long>("ItemId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("TagId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("ItemTags");
+                });
+
             modelBuilder.Entity("TreasureTracker.Domain.Entities.Like", b =>
                 {
                     b.Property<long>("Id")
@@ -197,6 +232,32 @@ namespace TreasureTracker.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("TreasureTracker.Domain.Entities.Tag", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("TreasureTracker.Domain.Entities.User", b =>
@@ -337,6 +398,25 @@ namespace TreasureTracker.Data.Migrations
                     b.Navigation("Collection");
                 });
 
+            modelBuilder.Entity("TreasureTracker.Domain.Entities.ItemTag", b =>
+                {
+                    b.HasOne("TreasureTracker.Domain.Entities.Item", "Item")
+                        .WithMany("ItemTags")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TreasureTracker.Domain.Entities.Tag", "Tag")
+                        .WithMany("ItemTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+
+                    b.Navigation("Tag");
+                });
+
             modelBuilder.Entity("TreasureTracker.Domain.Entities.Like", b =>
                 {
                     b.HasOne("TreasureTracker.Domain.Entities.Item", "Item")
@@ -381,7 +461,14 @@ namespace TreasureTracker.Data.Migrations
                 {
                     b.Navigation("Comments");
 
+                    b.Navigation("ItemTags");
+
                     b.Navigation("Likes");
+                });
+
+            modelBuilder.Entity("TreasureTracker.Domain.Entities.Tag", b =>
+                {
+                    b.Navigation("ItemTags");
                 });
 
             modelBuilder.Entity("TreasureTracker.Domain.Entities.User", b =>

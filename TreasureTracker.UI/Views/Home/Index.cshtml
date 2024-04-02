@@ -1,7 +1,49 @@
-﻿@{
+﻿@model IndexViewModel;
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@* <div class="text-center">
     <h1 class="display-4">@_localization.Getkey("str_welcome_message")</h1>
 </div>
+ *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/custom.css" />
+    <link rel="stylesheet"
+          href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <title>Home</title>
+</head>
+<body>
+    @foreach (var item in Model.Collections)
+    {
+        var photo = "../images/" + (item.ImageUrl ?? "logo.png");
+
+        <a href="@Url.Action("CollectionView", "Home", new { id = item.Id })">
+            <div class="user-row">
+                <div class="user-avatar">
+                    <img src="@photo" alt="User Avatar">
+                </div>
+                <div class="user-info">
+                    <h3>User Name</h3>
+                    <p>User Description</p>
+                </div>
+                <div class="delete-button">
+                    <button>
+                        <i class="uil uil-thumbs-up"></i>
+                    </button>
+
+                    @*  <button onclick="showComment()">
+                <i class="uil uil-comments"></i>
+                </button> *@
+                </div>
+            </div>
+        </a>
+    }
+
+</body>
+</html>
+
