@@ -1,4 +1,4 @@
-﻿@model UserViewModel
+﻿@model IndexViewModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,16 +74,16 @@
                 <div class="user-dropdown" id="user-dropdown">
                     <div class="user__dropdown__item">
                         <span class="label">@_localization.Getkey("nav_first_name") :</span>
-                        <span class="value"> @Model.FirstName </span>
+                        <span class="value"> @Model.User.FirstName </span>
                     </div>
                     <div class="user__dropdown__item">
                         <span class="label">@_localization.Getkey("nav_last_name"):</span>
-                        <span class="value"> @Model.LastName </span> 
+                        <span class="value"> @Model.User.LastName </span> 
                     </div>
 
                     <div class="user__dropdown__item">
                         <span class="label">@_localization.Getkey("nav_role"):</span>
-                        <span class="value">@Model.Role</span> 
+                        <span class="value">@Model.User.Role</span> 
                     </div>
                     <a class="user__dropdown__item" asp-controller="Home" asp-action="RedirectUser">Profile</a>
                     <hr>

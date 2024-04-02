@@ -1,0 +1,66 @@
+﻿@model CollectionPageViewModel;
+@{
+    Layout = null;
+    ViewData["Title"] = "Collection Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/custom.css" />
+    <link rel="stylesheet"
+          href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <title>Collection</title>
+</head>
+<body>
+    @{var photo = "../images/" + (Model.Collection.ImageUrl ?? "logo.jpg");}
+    <div class="user-row">
+        <div class="user-avatar">
+            <img src="@photo" alt="User Avatar">
+        </div>
+        <div class="user-info">
+            <h3>@Model.Collection.Name</h3>
+            <p>
+                @if (Model.Collection.Description.Length > 100)
+                {
+                    @Model.Collection.Description.Substring(0, 100)
+                }
+                else
+                {
+                    @Model.Collection.Description
+                }
+                ...
+            </p>
+        </div>
+        <div class="delete-button">
+            <button>
+                <i class="uil uil-thumbs-up"></i>
+            </button>
+
+            <button onclick="showComment()">
+                <i class="uil uil-comments"></i>
+            </button>
+        </div>
+
+    </div>
+    
+    <div id="allcomment">
+        <div class="user-row coment">
+            <div class="user-info">
+                <h3>John Doe</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse molestiae pariatur eos qui? Ipsam ratione sequi eius explicabo commodi incidunt eos eaque doloribus maiores dolore? Labore nobis quia enim ab!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showComment() {
+            document.getElementById('allcomment').classList.toggle('show')
+        }
+    </script>
+
+</body>
+</html>

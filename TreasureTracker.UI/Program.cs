@@ -5,6 +5,7 @@ using TreasureTracker.Service.Helpers.Media;
 using TreasureTracker.Service.Mappers;
 using TreasureTracker.Service.Services.Languages;
 using TreasureTracker.UI.Extentions;
+using TreasureTracker.UI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,6 +60,7 @@ app.UseCors(cors =>
 
 //Step 2
 app.UseRequestLocalization(localizationOptions);
+app.UseMiddleware<ExceptionHandler>();
 
 app.UseRouting();
 

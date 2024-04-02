@@ -1,8 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.IdentityModel.Tokens.Jwt;
+using TreasureTracker.Data.IRepositories;
 using TreasureTracker.Service.Interfaces.Users;
 using TreasureTracker.Service.Services.Languages;
+using TreasureTracker.UI.ViewModels;
 
 namespace TreasureTracker.UI.Controllers
 {
@@ -12,15 +15,19 @@ namespace TreasureTracker.UI.Controllers
         private readonly ILogger<HomeController> _logger;
         private  LanguageService _localization;
         private readonly IUserService _userService;
+        private readonly ICollectionRepository _repository;
 
         public HomeController(ILogger<HomeController> logger,
-                              LanguageService localization, 
-                              IUserService userService)
+                              LanguageService localization,
+                              IUserService userService,
+                              ICollectionRepository repository)
         {
             _logger = logger;
             _localization = localization;
             _userService = userService;
+            _repository = repository;
         }
+        
 
         [HttpGet]
         public  async Task<IActionResult> Index()
@@ -28,9 +35,45 @@ namespace TreasureTracker.UI.Controllers
             var id = GetUserId();
 
             var user = await _userService.GetByIdAsync(id);
+
+            var collections = await _repository.GetAllAsync()
+                .Include(c=>c.User)
+                .ToListAsync();
+
             //get culture information
             var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
-            return View(user);
+
+            var model = new IndexViewModel
+            {
+                User = user,
+                Collections = collections
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CollectionView(long id)
+        {
+            var userId = GetUserId();
+            var user = await _userService.GetByIdAsync(userId);
+
+            var collection = await _repository.GetAllAsync()
+                .Where(c => c.Id == id)
+                .Include(c => c.User)
+                .Include(c => c.Items)
+                .ThenInclude(i => i.Comments)
+                .Include(c => c.Items)
+                .ThenInclude(i => i.Likes)
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
+
+            var model = new CollectionPageViewModel
+            {
+                User = user,
+                Collection = collection
+            };
+
+            return View(model);
         }
 
         public async Task<IActionResult> RedirectUser()

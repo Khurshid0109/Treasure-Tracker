@@ -1,0 +1,63 @@
+﻿.user-row {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 0 auto;
+    width: 800px;
+    margin-top: 30px;
+}
+
+    .user-row.coment {
+        margin-top: 10px;
+        border-radius: 10px;
+        justify-content: center;
+        width: 780px;
+    }
+
+
+.user-avatar {
+    margin-right: 10px;
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
+}
+
+    .user-avatar img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+#allcomment {
+    display: none;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+    #allcomment.show {
+        display: block;
+    }
+
+.user-info {
+    flex-grow: 1;
+}
+
+    .user-info h3,
+    .user-info p {
+        margin: 0;
+    }
+
+.delete-button button {
+    border: 1px solid lawngreen;
+    border-radius: 3px;
+    padding: 7px 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: transparent;
+
+}
+
+.delete-button button i{
+    font-size: 18px;
+}
