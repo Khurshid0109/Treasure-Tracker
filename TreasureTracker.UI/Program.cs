@@ -47,9 +47,20 @@ WebHostEnvironmentHelper.WebRootPath = Path.GetFullPath("wwwroot");
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error/GlobalError");
     app.UseHsts();
 }
+
+app.Use(async (ctx, next) =>
+{
+    await next();
+
+    if (ctx.Response.StatusCode == 404)
+    {
+        ctx.Request.Path = "/Error/GlobalError?statusCode=" + ctx.Response.StatusCode;
+        await next();
+    }
+});
 
 app.UseStaticFiles();
 

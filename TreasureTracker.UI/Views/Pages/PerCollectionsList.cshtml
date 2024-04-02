@@ -34,31 +34,37 @@
                 <li>
                     <a asp-controller="Pages" asp-action="Dashboard">
                         <i class="uil uil-estate"></i>
-                        <span class="link-name">Dashboard</span>
+                        <span class="link-name">@_localization.Getkey("dashboard")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-controller="Pages" asp-action="CategoriesList">
                         <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">Category</span>
+                        <span class="link-name">@_localization.Getkey("category")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-controller="Pages" asp-action="CollectionsList">
                         <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">Collection</span>
+                        <span class="link-name">@_localization.Getkey("nav_collections")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-controller="Pages" asp-action="PerCollectionsList">
                         <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">My collection</span>
+                        <span class="link-name">@_localization.Getkey("my_collection")</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <i class="uil uil-files-landscapes"></i>
+                        <span class="link-name">@_localization.Getkey("settings")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-controller="Pages" asp-action="UsersList">
                         <i class="uil uil-chart"></i>
-                        <span class="link-name">Users</span>
+                        <span class="link-name">@_localization.Getkey("users_list")</span>
                     </a>
                 </li>
             </ul>
