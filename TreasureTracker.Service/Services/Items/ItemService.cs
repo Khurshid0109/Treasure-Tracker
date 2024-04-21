@@ -4,10 +4,10 @@ using TreasureTracker.Domain.Entities;
 using TreasureTracker.Service.Extentions;
 using TreasureTracker.Data.IRepositories;
 using TreasureTracker.Service.DTOs.Items;
+using TreasureTracker.Service.Helpers.Media;
 using TreasureTracker.Service.Configurations;
 using TreasureTracker.Service.Interfaces.Items;
 using TreasureTracker.Service.Helpers.Exceptions;
-using TreasureTracker.Service.Helpers.Media;
 
 namespace TreasureTracker.Service.Services.Items;
 public class ItemService : IItemService
@@ -29,7 +29,6 @@ public class ItemService : IItemService
     {
        var collection = await _collectionRepository.GetAllAsync()
             .Where(c => c.Id == model.CollectionId)
-            .AsNoTracking()
             .FirstOrDefaultAsync();
 
         if(collection is null)
@@ -51,7 +50,6 @@ public class ItemService : IItemService
     {
        var item = await _itemRepository.GetAllAsync()
             .Where(i => i.Id == id)
-            .AsNoTracking()
             .FirstOrDefaultAsync();
 
         if(item is null)
@@ -66,6 +64,7 @@ public class ItemService : IItemService
     public async Task<IEnumerable<ItemViewModel>> GetAllAsync(PaginationParams @params)
     {
        var items = await _itemRepository.GetAllAsync()
+            .AsNoTracking()
             .ToPagedList<Item>(@params)
             .ToListAsync();
 
@@ -89,7 +88,6 @@ public class ItemService : IItemService
     {
         var item = await _itemRepository.GetAllAsync()
             .Where(i => i.Id == id)
-            .AsNoTracking()
             .FirstOrDefaultAsync();
 
         if (item is null)

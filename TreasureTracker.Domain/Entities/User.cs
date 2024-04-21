@@ -1,5 +1,5 @@
-﻿using TreasureTracker.Domain.Enums;
-using TreasureTracker.Domain.Commons;
+﻿using TreasureTracker.Domain.Commons;
+using TreasureTracker.Domain.Enums;
 
 namespace TreasureTracker.Domain.Entities;
 public class User:Auditable

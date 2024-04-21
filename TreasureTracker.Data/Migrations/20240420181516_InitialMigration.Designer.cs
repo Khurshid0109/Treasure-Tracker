@@ -12,8 +12,8 @@ using TreasureTracker.Data.Db;
 namespace TreasureTracker.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240331164502_CollectionModelChanged")]
-    partial class CollectionModelChanged
+    [Migration("20240420181516_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -150,6 +150,7 @@ namespace TreasureTracker.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("IsDeleted")
@@ -169,7 +170,7 @@ namespace TreasureTracker.Data.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("TreasureTracker.Domain.Entities.ItemTag", b =>
+            modelBuilder.Entity("TreasureTracker.Domain.Entities.Like", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -186,45 +187,19 @@ namespace TreasureTracker.Data.Migrations
                     b.Property<long>("ItemId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("TagId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ItemId");
 
-                    b.HasIndex("TagId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("ItemTags");
-                });
-
-            modelBuilder.Entity("TreasureTracker.Domain.Entities.Tag", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tags");
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("TreasureTracker.Domain.Entities.User", b =>
@@ -365,23 +340,23 @@ namespace TreasureTracker.Data.Migrations
                     b.Navigation("Collection");
                 });
 
-            modelBuilder.Entity("TreasureTracker.Domain.Entities.ItemTag", b =>
+            modelBuilder.Entity("TreasureTracker.Domain.Entities.Like", b =>
                 {
                     b.HasOne("TreasureTracker.Domain.Entities.Item", "Item")
-                        .WithMany("ItemTags")
+                        .WithMany("Likes")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TreasureTracker.Domain.Entities.Tag", "Tag")
-                        .WithMany("ItemTags")
-                        .HasForeignKey("TagId")
+                    b.HasOne("TreasureTracker.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Item");
 
-                    b.Navigation("Tag");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TreasureTracker.Domain.Entities.UserCode", b =>
@@ -409,12 +384,7 @@ namespace TreasureTracker.Data.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("ItemTags");
-                });
-
-            modelBuilder.Entity("TreasureTracker.Domain.Entities.Tag", b =>
-                {
-                    b.Navigation("ItemTags");
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("TreasureTracker.Domain.Entities.User", b =>

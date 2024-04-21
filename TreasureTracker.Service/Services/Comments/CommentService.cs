@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using TreasureTracker.Data.IRepositories;
 using TreasureTracker.Domain.Entities;
-using TreasureTracker.Service.Configurations;
-using TreasureTracker.Service.DTOs.Comments;
 using TreasureTracker.Service.Extentions;
+using TreasureTracker.Data.IRepositories;
+using TreasureTracker.Service.DTOs.Comments;
+using TreasureTracker.Service.Configurations;
 using TreasureTracker.Service.Helpers.Exceptions;
 using TreasureTracker.Service.Interfaces.Comments;
 
@@ -31,7 +31,6 @@ public class CommentService : ICommentService
     {
         var user = await _userRepository.GetAllAsync()
             .Where(u => u.Id == model.UserId)
-            .AsNoTracking()
             .FirstOrDefaultAsync();
 
         if (user is null)
@@ -39,7 +38,6 @@ public class CommentService : ICommentService
        
         var item = await _itemRepository.GetAllAsync()
                          .Where(i => i.Id == model.ItemId)
-                         .AsNoTracking()
                          .FirstOrDefaultAsync();
 
         if(item is null)
@@ -58,7 +56,6 @@ public class CommentService : ICommentService
     {
        var comment = await _commentRepository.GetAllAsync()
                                              .Where(c=>c.Id == id)
-                                             .AsNoTracking()
                                              .FirstOrDefaultAsync();
         if(comment is null)
             throw new TTrackerException(404, "Comment is not found!");
@@ -72,6 +69,7 @@ public class CommentService : ICommentService
     public async Task<IEnumerable<CommentViewModel>> GetAllAsync(PaginationParams @params)
     {
         var comments = await _commentRepository.GetAllAsync()
+            .AsNoTracking()
             .ToPagedList<Comment>(@params)
             .ToListAsync();
 
@@ -94,14 +92,12 @@ public class CommentService : ICommentService
     {
         var comment = await _commentRepository.GetAllAsync()
                                              .Where(c=>c.Id == id)
-                                             .AsNoTracking()
                                              .FirstOrDefaultAsync();
         if(comment is null)
             throw new TTrackerException(404, "Comment is not found!");
 
         var user = await _userRepository.GetAllAsync()
            .Where(u => u.Id == model.UserId)
-           .AsNoTracking()
            .FirstOrDefaultAsync();
 
         if (user is null)
@@ -109,7 +105,6 @@ public class CommentService : ICommentService
 
         var item = await _itemRepository.GetAllAsync()
                          .Where(i => i.Id == model.ItemId)
-                         .AsNoTracking()
                          .FirstOrDefaultAsync();
 
         if (item is null)

@@ -70,6 +70,7 @@ public class CollectionService : ICollectionService
     public async Task<IEnumerable<CollectionViewModel>> GetAllAsync(PaginationParams @params)
     {
         var collections = await _collectionRepository.GetAllAsync()
+            .AsNoTracking()
             .ToPagedList<Collection>(@params)
             .ToListAsync();
 
@@ -93,7 +94,6 @@ public class CollectionService : ICollectionService
     {
         var collection = await _collectionRepository.GetAllAsync()
             .Where(c => c.Id == id)
-            .AsNoTracking()
             .FirstOrDefaultAsync();
 
         if (collection is null)
