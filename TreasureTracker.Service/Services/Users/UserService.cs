@@ -61,7 +61,6 @@ public class UserService:IUserService
     {
         var user = await _repository.GetAllAsync()
              .Where(u => u.Id == id)
-             .AsNoTracking()
              .FirstOrDefaultAsync();
 
         if (user is null)
@@ -76,6 +75,7 @@ public class UserService:IUserService
     public async Task<IEnumerable<UserViewModel>> GetAllAsync(PaginationParams @params)
     {
         var users = await _repository.GetAllAsync()
+              .AsNoTracking()
               .ToPagedList<User>(@params)
               .ToListAsync();
 
@@ -85,6 +85,7 @@ public class UserService:IUserService
     public async Task<UserViewModel> GetByEmailAsync(string email)
     {
         var user = await _repository.GetAllAsync()
+             .AsNoTracking()
              .Where(u => u.Email.ToLower() == email.ToLower())
              .FirstOrDefaultAsync();
 
@@ -97,6 +98,7 @@ public class UserService:IUserService
     public async Task<UserViewModel> GetByIdAsync(long id)
     {
         var user = await _repository.GetAllAsync()
+              .AsNoTracking()
               .Where(u => u.Id == id)
               .FirstOrDefaultAsync();
 

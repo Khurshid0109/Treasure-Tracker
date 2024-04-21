@@ -24,7 +24,6 @@ public class CategoryService : ICategoryService
     {
         var category = await _categoryRepository.GetAllAsync()
              .Where(c => c.Name.ToLower() == model.Name.ToLower())
-             .AsNoTracking()
              .FirstOrDefaultAsync();
 
         if(category is not null)
@@ -42,6 +41,7 @@ public class CategoryService : ICategoryService
     public async Task<IEnumerable<CategoryViewModel>> GetAllAsync(PaginationParams @params)
     {
         var categories = await _categoryRepository.GetAllAsync()
+             .AsNoTracking()
              .ToPagedList<Category>(@params)
              .ToListAsync();
 
@@ -65,7 +65,6 @@ public class CategoryService : ICategoryService
     {
         var category = await _categoryRepository.GetAllAsync()
             .Where(c => c.Id == id)
-            .AsNoTracking()
             .FirstOrDefaultAsync();
 
         if (category is null)

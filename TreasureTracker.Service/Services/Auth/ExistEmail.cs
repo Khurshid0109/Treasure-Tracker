@@ -34,6 +34,7 @@ public class ExistEmail:IExistEmail
     {
         var user = await _repository
             .GetAllAsync()
+            .AsNoTracking()
             .IgnoreQueryFilters()
             .FirstOrDefaultAsync(u => u.Email == email);
 
@@ -46,7 +47,7 @@ public class ExistEmail:IExistEmail
         var resend = await ResendCodeAsync(email);
 
         if (!resend)
-            throw new TTrackerException(403, "Birozdan keyinroq qayta urinib ko'ring!");
+            throw new TTrackerException(403, "Birozdan keyin qayta urinib ko'ring!");
 
         return ExistEmailEnum.EmailNotChecked;
     }
@@ -91,6 +92,7 @@ public class ExistEmail:IExistEmail
 
         var user = await _repository
             .GetAllAsync()
+            .AsNoTracking()
             .IgnoreQueryFilters()
             .Where(u => u.Email == email)
             .Select(u => new { u.Id })

@@ -29,7 +29,6 @@ public class UserCodeService:IUserCodeService
         var user = await _userRepository.GetAllAsync()
             .IgnoreQueryFilters()
             .Where(u => u.Id == model.UserId)
-            .AsNoTracking()
             .FirstOrDefaultAsync();
 
         if (user is null)
@@ -48,7 +47,6 @@ public class UserCodeService:IUserCodeService
     {
         var code = await _repository.GetAllAsync()
              .Where(c => c.Id == id)
-             .AsNoTracking()
              .FirstOrDefaultAsync();
 
         if (code is null)
@@ -63,6 +61,7 @@ public class UserCodeService:IUserCodeService
     public async Task<IEnumerable<UserCodeViewModel>> GetAllAsync(PaginationParams @params)
     {
         var codes = await _repository.GetAllAsync()
+             .AsNoTracking()
              .ToPagedList<UserCode>(@params)
              .ToListAsync();
 
