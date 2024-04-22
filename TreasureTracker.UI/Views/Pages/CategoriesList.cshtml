@@ -1,155 +1,64 @@
 ﻿@model IEnumerable<CategoryViewModel>
 @{
-    Layout = null;
+    Layout = "_adminLayout";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!----======== CSS ======== -->
-    <link rel="stylesheet" href="../css/Pages.css" />
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
 
-    <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet"
-          href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
-
-    <title>Admin Dashboard Panel</title>
-</head>
-<body>
-    <nav>
-        <div class="logo-name">
-            <div class="logo-image">
-                <img src="../SiteImages/logo.png" alt="" />
-            </div>
-
-            <span class="logo_name">Treasure Tracker</span>
+        <div class="search-box">
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder="Search here..." />
         </div>
 
-        <div class="menu-items">
-            <ul class="nav-links">
-                <li>
-                    <a asp-controller="Pages" asp-action="Dashboard">
-                        <i class="uil uil-estate"></i>
-                        <span class="link-name">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="Pages" asp-action="CategoriesList">
-                        <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">Category</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="Pages" asp-action="CollectionsList">
-                        <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">Collection</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="Pages" asp-action="PerCollectionsList">
-                        <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">My collection</span>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">Settings</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="Pages" asp-action="UsersList">
-                        <i class="uil uil-chart"></i>
-                        <span class="link-name">Users</span>
-                    </a>
-                </li>
-            </ul>
+        <img src="../SiteImages/profile-pic.jpg" alt="" />
+    </div>
 
-            <ul class="logout-mode">
-                <li>
-                    <a href="#">
-                        <i class="uil uil-signout"></i>
-                        <span class="link-name">Logout</span>
-                    </a>
-                </li>
-
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                        <span class="link-name">Dark Mode</span>
-                    </a>
-
-                    <div class="mode-toggle">
-                        <span class="switch"></span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="dashboard">
-        <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here..." />
+    <div class="dash-content">
+        <div class="overview users__title__box">
+            <div class="title">
+                <i class="uil uil-tachometer-fast-alt"></i>
+                <span class="text">Users</span>
             </div>
-
-            <img src="../SiteImages/profile-pic.jpg" alt="" />
+            <div class="add__btn__box">
+                <button class="add__btn"><a asp-controller="Pages" asp-action="AddCategory">Add category</a></button>
+            </div>
         </div>
 
-        <div class="dash-content">
-            <div class="overview users__title__box">
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Users</span>
-                </div>
-                <div class="add__btn__box">
-                    <button class="add__btn"><a asp-controller="Pages" asp-action="AddCategory">Add category</a></button>
-                </div>
-            </div>
-
-            <section id="table">
-                <table>
-                    <thead>
+        <section id="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">T/r</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">CreatedAt</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                @{
+                    int count = 1;
+                }
+                <tbody>
+                    @foreach (var category in Model)
+                    {
                         <tr>
-                            <th scope="col">T/r</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">CreatedAt</th>
-                            <th scope="col">Action</th>
+                            <th scope="row">@count</th>
+                            <td>@category.Id</td>
+                            <td>@category.Name</td>
+                            <td> @category.CreatedAt.ToString("dd.MM.yyyy")</td>
+                            <td>
+                                <div class="action__btn__box">
+                                    <button class="action__btn edit__btn"><a>Edit</a></button>
+                                    <button class="action__btn delete__btn"><a>Delete</a></button>
+                                </div>
+                            </td>
                         </tr>
-                    </thead>
-                    @{
-                        int count = 1;
+                        count++;
                     }
-                    <tbody>
-                        @foreach (var category in Model)
-                        {
-                            <tr>
-                                <th scope="row">@count</th>
-                                <td>@category.Id</td>
-                                <td>@category.Name</td>
-                                <td> @category.CreatedAt.ToString("dd.MM.yyyy")</td>
-                                <td>
-                                    <div class="action__btn__box">
-                                        <button class="action__btn edit__btn"><a>Edit</a></button>
-                                        <button class="action__btn delete__btn"><a>Delete</a></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            count++;
-                        }
-                    </tbody>
-                </table>
-            </section>
-        </div>
-    </section>
-
-    <script src="../js/Page.js"></script>
-</body>
-</html>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</section>

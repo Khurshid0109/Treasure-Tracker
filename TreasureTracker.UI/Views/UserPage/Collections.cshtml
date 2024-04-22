@@ -1,134 +1,59 @@
 ﻿@model IEnumerable<CollectionViewModel>
 @{
-    Layout = null;
+    Layout = "_userLayout";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<section class="dashboard">
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
 
-    <!----======== CSS ======== -->
-    <link rel="stylesheet" href="../css/Pages.css" />
-    <link rel="stylesheet" href="../css/Pages2.css" />
-
-    <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet"
-          href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
-
-    <title>User Dashboard Panel</title>
-</head>
-<body>
-    <nav>
-        <div class="logo-name">
-            <div class="logo-image">
-                <img src="../SiteImages/logo.png" alt="" />
-            </div>
-
-            <span class="logo_name">Treasure Tracker</span>
+        <div class="search-box">
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder="Search here..." />
         </div>
 
-        <div class="menu-items">
-            <ul class="nav-links">
-                <li>
-                    <a asp-controller="UserPage" asp-action="Dashboard">
-                        <i class="uil uil-estate"></i>
-                        <span class="link-name">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="UserPage" asp-action="Collections">
-                        <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">My collection</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="uil uil-chart"></i>
-                        <span class="link-name">Settings</span>
-                    </a>
-                </li>
-            </ul>
+        <img src="../SiteImages/profile-pic.jpg" alt="" />
+    </div>
+    <div class="dash-content">
+        <div class="overview users__title__box">
+            <div class="title">
+                <i class="uil uil-tachometer-fast-alt"></i>
+                <span class="text">Collections</span>
+            </div>
+            <div class="add__btn__box">
+                <button class="add__btn"><a asp-controller="UserPage" asp-action="AddCollection">Add collection</a></button>
+            </div>
+        </div>
 
-            <ul class="logout-mode">
-                <li>
-                    <a href="#">
-                        <i class="uil uil-signout"></i>
-                        <span class="link-name">Logout</span>
-                    </a>
-                </li>
-
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                        <span class="link-name">Dark Mode</span>
-                    </a>
-
-                    <div class="mode-toggle">
-                        <span class="switch"></span>
+        <div class="col-md-8">
+            @foreach (var item in Model)
+            {
+                var photo = "../images/" + (item.ImageUrl ?? "profile-pic.jpg");
+                <div class="user-row">
+                    <div class="user-avatar">
+                        <img src="@photo" alt="User Avatar">
                     </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="dashboard">
-        <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here..." />
-            </div>
-
-            <img src="../SiteImages/profile-pic.jpg" alt="" />
-        </div>
-        <div class="dash-content">
-            <div class="overview users__title__box">
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Collections</span>
-                </div>
-                <div class="add__btn__box">
-                    <button class="add__btn"><a asp-controller="UserPage" asp-action="AddCollection">Add collection</a></button>
-                </div>
-            </div>
-
-            <div class="col-md-8">
-                @foreach (var item in Model)
-                {
-                    var photo = "../images/" + (item.ImageUrl ?? "profile-pic.jpg");
-                    <div class="user-row">
-                        <div class="user-avatar">
-                            <img src="@photo" alt="User Avatar">
-                        </div>
-                        <div class="user-info">
-                            <h3>@item.Name</h3>
-                            <p>
-                                @if (item.Description.Length > 100)
-                                {
-                                    @item.Description.Substring(0, 100)
-                                }
-                                else
-                                {
-                                    @item.Description
-                                }
-                                ...
-                            </p>
-                        </div>
-                        <div class="delete-button">
-                            <button>Delete</button>
-                        </div>
+                    <div class="user-info">
+                        <h3>@item.Name</h3>
+                        <p>
+                            @if (item.Description.Length > 100)
+                            {
+                                @item.Description.Substring(0, 100)
+                            }
+                            else
+                            {
+                                @item.Description
+                            }
+                            ...
+                        </p>
                     </div>
-                }
-
-            </div>
+                    <div class="delete-button">
+                        <button>Delete</button>
+                    </div>
+                </div>
+            }
 
         </div>
 
-    </section>
+    </div>
 
-    <script src="../js/Page.js"></script>
-</body>
-</html>
+</section>
